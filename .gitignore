@@ -1,0 +1,33 @@
+# Local development environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+node_modules/
+
+# Secrets and machine-local agent configuration
+.env
+.env.*
+!.env.example
+.codex/
+.aws/
+
+# Generated documents, render images, and evaluation runs belong here.
+# Do not globally ignore PDF/DOCX files: reviewed lecture fixtures may use them.
+/output/
+/outputs/
+/evals/**/runs/
+/evals/**/results/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
+*.tmp
+*.log

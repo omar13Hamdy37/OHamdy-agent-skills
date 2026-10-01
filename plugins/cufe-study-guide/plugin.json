@@ -1,0 +1,22 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "cufe-study-guide",
+  "version": "0.1.0",
+  "description": "Transform university lecture material into complete, practical study guides. Initial development scaffold; teaching instructions and polished DOCX/PDF output are planned.",
+  "author": {
+    "name": "omar13Hamdy37",
+    "url": "https://github.com/omar13Hamdy37"
+  },
+  "repository": "https://github.com/omar13Hamdy37/OHamdy-agent-skills",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "CUFE Study Guide",
+        "shortDescription": "University lecture study guides (development scaffold)",
+        "longDescription": "A study-guide author, tutor, and document designer for supplied university lectures. Phase 1 establishes the package and specification; the full learning system and document output are not implemented yet.",
+        "developerName": "omar13Hamdy37",
+        "category": "Education"
+      }
+    }
+  }
+}
