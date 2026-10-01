@@ -12,6 +12,17 @@
 
 ### Changed
 
+- Implemented Phase 3 rendering: a versioned semantic JSON Schema and shared
+  content plan feeding DOCX and direct PDF with mechanical artifact checks.
+- Added a restrained, labeled A4 visual system, local subject-aware cover art,
+  embedded fonts, structural navigation, semantic callouts, equations, code,
+  tables, diagrams, quizzes/Answer Key, and cheatsheets.
+- Added a hashed dependency lock and isolated cached Python bootstrap with offline
+  reuse; resources resolve from the installed package and outputs stay outside it.
+- Added compact rendering-development fixtures, mechanical edge checks, actual
+  PDF page inspection, and Phase 3 validation/handoff documentation. Full teaching
+  evals, real lecture testing, and release remain deferred.
+
 - Completed Phase 2 teaching intelligence: concept/dependency planning, content
   classification and coverage ledger, intuitive subject-sensitive explanations,
   practice, misconceptions, and checkpoints.

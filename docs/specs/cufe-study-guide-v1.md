@@ -6,9 +6,9 @@
 
 This specification preserves the complete learning and document-output contract
 for implementation in Phases 2–4. Requirements below describe the mature skill.
-Phase 2 implements operational teaching references and semantic output readiness;
-professional rendering remains Phase 3 and full regression validation remains
-Phase 4. This specification retains the complete intended behavior across phases.
+Phase 2 implements operational teaching references. Phase 3 implements shared-model
+document rendering and mechanical/PDF visual checks; full regression and clean-host
+release validation remain Phase 4. The complete intended behavior is retained.
 
 ## 1. Product purpose and priorities
 
@@ -534,7 +534,8 @@ reference, and retains progressive disclosure. Keep `SKILL.md` as the concise
 entrypoint, not a copy of this master specification.
 
 Document design has a Phase 2 semantic handoff and Phase 3 implementation. Scripts
-and assets remain empty until a concrete helper/template requirement is implemented.
+and assets now contain the baseline renderers, schema/theme and isolated dependency
+bootstrap. Teaching behavior remains in references rather than rendering code.
 
 ## 7. Evaluation architecture (foundation now; implementation in Phase 4)
 
@@ -654,3 +655,24 @@ These clarify implementation while preserving A–T and the complete output cont
   teaching, learning experience, connections, quiz, concision, and output readiness.
   Actual artifact rendering and its post-export repair/verification remain Phase 3;
   real-lecture regression grading and release validation remain Phase 4.
+
+## 10. Phase 3 rendering clarification
+
+The baseline uses versioned JSON model 1.0, validated before one ordered content
+plan drives both DOCX and direct PDF. Exact fields are a rendering contract, not
+an OpenAI plugin schema or a requirement to use Python on every host. Native
+artifact mechanisms may preserve the same semantics and verification obligations.
+
+Semantic content types, provenance, proof/connection classification, feedback
+placement, and quiz/key associations remain distinct. Model and theme versioning
+do not change course selection or teaching rules. Resource paths resolve from the
+installed package; runtime output and environments stay outside it. Dependency
+installation is isolated and hashed, and rendering works offline after setup.
+
+The restrained A4 design, minimal local subject-aware cover, true heading navigation,
+print-friendly callouts, code/tables/images, and shared equation layout implement
+the output contract. Equations may use sharp graphics when portability needs it,
+while retaining semantic description, symbol definitions, and stepwise reasoning.
+Mechanical checks do not replace rendered-page inspection. See
+[rendering](../rendering.md) and [validation](../validation-phase3.md) for actual
+supported capabilities, preview limits, and Phase 4 host/real-lecture work.

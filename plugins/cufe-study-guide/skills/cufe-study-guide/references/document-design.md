@@ -1,91 +1,121 @@
-# Semantic document contract
+# Document design and output
 
-Use when organizing reviewed content for the available output mechanism. This is
-the skill's authoring contract, not an OpenAI manifest schema or a required file
-serialization. Exact palette, templates, spacing, and rendering implementation
-belong to Phase 3.
+Use at the reviewed-content output stage. The baseline renderer produces DOCX and
+direct PDF from one validated versioned JSON guide, using package-relative assets.
+A capable native document mechanism may express the same semantics instead. Keep
+teaching decisions independent of tooling; never independently author the formats.
 
-## Keep the teaching structure independent of the renderer
+## Construct the output model
 
-Represent the guide as ordered sections with stable headings/identifiers and
-typed content blocks. Readable Markdown plus descriptive labels, a host-native
-document outline, or an equivalent structured representation can express this.
-Do not require one script, tool ID, JSON engine, or local filesystem path.
+Read [guide-model.md](guide-model.md) for exact fields and examples, then consult
+[study-guide.schema.json](../assets/study-guide.schema.json) as needed. Model 1.0
+retains ordered sections, typed content, provenance, proof/connection types,
+exercise feedback placement, and quiz/answer IDs. It is a local rendering contract,
+not an OpenAI manifest schema. Do not put raw colors or per-paragraph layout hacks
+in teaching content. Pass known metadata only and preserve source locators internally.
 
-For a block, retain its type, title/meaning, content, necessary assumptions, and
-links/references to related blocks. Keep course/enrichment scope and source locators
-internally where needed for audit; show provenance labels only when they affect
-student expectations. Preserve intact groups and answer associations rather than
-flattening everything into undifferentiated paragraphs.
+## Semantic-to-visual mapping
 
-## Semantic content types
-
-| Type | Meaning and content the output mechanism must preserve |
+| Semantic content | Baseline treatment |
 | --- | --- |
-| **Core explanation** | Motivation, mental model, mechanism, terminology, and implications in the chosen teaching order. |
-| **Important note** | A consequential condition, assumption, or reminder, with a specific title when useful. |
-| **Common confusion** | Mistaken idea, why plausible, correct model, and useful contrast. |
-| **Example** | Inputs/assumptions, decisive worked steps, result, and interpretation. |
-| **Previous lecture connection** | Relationship type, evidenced earlier topic/locator, concise recap, and current relevance. |
-| **Under the hood** | Internal state/operations and their observable consequence. |
-| **Optional enrichment** | Clear beyond-course scope, benefit, relevant prerequisites, and verified external link when used. |
-| **Proof** | Classification, claim, assumptions, steps, interpretation, and optional label when applicable. |
-| **Exercise** | Prompt before solution, inputs/constraints, feedback association, and meaningful attempt opportunity. |
-| **Checkpoint** | Compact understanding target after a completed conceptual group. |
-| **Breakpoint** | Safe stopping boundary and concise completion/next-unit note. |
-| **Quiz** | End-of-guide question group with IDs, mode, assumptions, and no interleaved answers. |
-| **Answer key** | Separate group after the quiz, matching IDs, correct results, and reasoning. |
-| **Cheatsheet** | Compact revision groups/entries with applicability and essential conditions. |
+| Core explanation | Unboxed readable prose with true section headings. |
+| Important note | Important label, muted ochre accent and pale strip. |
+| Common confusion | Explicit Common Confusion label, muted rust accent. |
+| Worked example | Worked Example label, blue accent, short steps grouped where feasible. |
+| Previous lecture connection | Violet label with relationship type and evidenced recap. |
+| Under the hood | Teal mechanism label; ordinary prose explains state changes. |
+| Optional enrichment | Secondary gray label, visibly optional scope. |
+| Proof | Slate classification label; optional proofs include the understanding-aid wording. |
+| Exercise | Green prompt/hint labels; inline feedback follows attempt spacing, or goes to the key. |
+| Checkpoint | Green Checkpoint label and compact learning targets. |
+| Breakpoint | Subtle gray Good stopping point note; never an automatic page break. |
+| Quiz | Strong single-column end section; questions and IDs have no adjacent answers. |
+| Answer key | A separate following page/section with matching IDs and reasoning. |
+| Cheatsheet | Compact grouped tables/formulas, readable type; not forced to one page. |
 
-Type and provenance are separate: a proof can be course material or optional; an
-example can explain required content without needing a visible enrichment label.
-Use plain sections for ordinary explanation and callouts selectively, so semantic
-types do not imply a decorated box around every block.
+Color is secondary to labels, heading hierarchy, and grouping. Label strips use
+pale backgrounds; normal explanation does not live in boxes. A grayscale theme
+is available. Use callouts selectively so emphasis remains useful. Type and
+provenance are separate: an example may explain required content; an optional
+proof must still expose scope. Do not tag every explanatory paragraph.
 
-## Preserve equations, diagrams, code, and tables
+## Preserve source objects
 
-- **Equation:** retain editable/meaningful notation where possible, symbol definitions,
-  units/domain, assumptions, explanatory text, and derivation/example relationships.
-  Do not hand off only an equation image when its meaning can be retained as text.
-- **Diagram/plot:** retain an accessible source object/locator when available and a
-  semantic description of labels, components, edges/directions, axes/units, and the
-  instructional takeaway. Indicate whether preservation or clearer recreation is
-  intended; missing/uncertain elements cannot be invented by the renderer.
-- **Code/procedure:** retain language/engine assumptions, indentation, relevant
-  input/output, commentary, and trace associations. Keep verified execution status
-  accurate. Output formatting must not silently change behavior or notation.
-- **Table:** preserve column meanings, units, row associations, conditions, and
-  scope. Use a table because the comparison/mapping helps, not merely for decoration.
+- Equations: supported Mathtext, nearby description, symbols/units, assumptions,
+  optional number, and explicit steps/explanations. PDF uses sharp vector paths;
+  Word uses 600-dpi mathematical images with semantic alt/nearby text. Unsupported
+  LaTeX or equations that would shrink below 9 pt fail; supply shorter explicit
+  lines or use a capable native equation mechanism. Do not turn a proof into an image.
+- Code: preserve indentation, language/engine assumptions, output/trace and key-line
+  explanation. Light 9 pt monospaced treatment supports visual wrapping; executable
+  source remains in the model. No syntax highlighting is required by the baseline.
+- Tables: meaningful headers/rows, units and conditions, optional column weights;
+  padded wrapping cells and repeated headers. Keep complex formulas as associated
+  equation blocks when plain/Unicode cell notation would be unclear.
+- Images/diagrams: local accessible path, meaningful alt text, caption, source reference,
+  width preference and explanatory text. Aspect ratio is preserved. PNG/JPEG is the
+  baseline reliable input. Do not use unreadably small screenshots as fake coverage.
+- Links: descriptive text and verified supplied URL or existing `#id`; both formats
+  preserve links. The renderer does not browse or invent references.
 
-Mark a proof, worked example, or algorithm walkthrough as an intact conceptual
-group. Mark the final Answer Key as separate from the question group; an in-section
-exercise instead needs nearby prompt-then-feedback separation. These are semantic
-constraints, not Phase 2 page-layout code.
+## Layout, cover, and navigation
 
-## Prepare the output handoff
+Defaults: A4, 22 mm margins, 11 pt body with approximately 16 pt leading, black
+21/16/13 pt heading hierarchy, embedded runtime DejaVu fonts, restrained running
+header and body page numbers starting at 1 after the cover. Short reasoning groups
+are kept together when feasible; multi-page proofs paginate without extreme hacks.
 
-Pass the reviewed ordered content, known course/topic/lecture identifiers, requested
-formats, user preferences, required object/link associations, and any unresolved
-source/capability limits. Keep the internal coverage ledger separate from the
-student-facing document unless the user would benefit from seeing a concise audit.
+The cover displays known subject/course, lecture number, title and optional subtitle.
+Deterministic local abstract nodes, brackets, waveforms, traces or geometry respond
+to broad subject category. Unknown subjects receive a calm geometric fallback.
+Prepared by, Date, Student ID, professor, university and metadata tables remain
+opt-in; only explicit `cover_fields` requests justify them.
 
-Normally target both DOCX and PDF, or the requested subset. Use supported native
-capabilities/helpers without changing teaching decisions. If only one format or
-plain structured content is available, deliver that supported result and explain
-the missing requested capability. Never rename text to a document extension or
-claim an export/render verification that was not performed.
+PDF has heading outlines; Word uses structural heading styles. Linked contents
+appears for a longer guide (ten navigable headings or 6,000 prose words), or by
+explicit preference. It does not need a Word TOC field update. Use `theme.toc`
+when the default heuristic is unsuitable; it is not a teaching requirement.
 
-Provide cover metadata only when known: subject/course, lecture number if known,
-and lecture/topic title. A later cover should be minimal and subject-aware with
-subtle relevant visual design. Prepared by, Submitted to, Date, Student ID,
-professor fields, and large metadata tables are opt-in. Do not infer missing values.
+## Invoke the available mechanism
 
-## Phase 3 responsibilities
+For the packaged baseline, resolve the installed skill path from the host's skill
+location. Do not assume repository or cache directories. Use:
 
-The renderer must provide low-noise hierarchy, consistent accessible styling, and
-semantic signals beyond color: textual labels/icons/shapes must remain understandable
-in grayscale and with limited color perception. Preserve readable content in each
-requested artifact, working links, intact conceptual groups, and separation of
-quiz answers from immediate view. Phase 3 implements and verifies actual rendering,
-then repairs defects in the exports. No final colors, templates, pagination,
-headers/footers, artwork, equation renderer, or image pipeline is specified here.
+```text
+python <skill-path>/scripts/run_renderer.py -- --input <guide.json> --output-dir <user-directory> --formats docx,pdf
+```
+
+The bootstrap provisions a cached isolated venv from the included hashed lock;
+initial setup needs Python 3.11+, venv/pip and dependency access. It never installs
+globally. `--offline` before `--` requires a ready runtime; `--runtime-dir` selects
+an explicit cache. An already provisioned environment may invoke
+`../scripts/render_study_guide.py` directly. Use `--validate-only` after `--` to
+validate content shape, relationships, images, glyphs and equations before export.
+Missing capabilities are a reason for an honest native/supported-output fallback,
+not a fabricated artifact. Basic rendering has no network requirement after setup.
+
+Choose requested formats; normally both. CLI supports a safe `--filename`, an exact
+single-format `--output-path`, optional `--theme grayscale`, and `--overwrite` for
+intentional regeneration. Default outputs go into `study-guides/` beside JSON;
+when JSON is inside the installed package, supply an outside output directory.
+Do not pollute the skill package with guides or environments. The renderer checks
+all requested formats before publishing them and diagnoses real failures non-zero.
+
+## Verify and deliver
+
+1. Finish [quality-checklist.md](quality-checklist.md) for content before rendering.
+2. Confirm actual requested files and their mechanical checks; do not equate a
+   filename or file extension with successful generation.
+3. Render PDF pages to images with available tools and inspect clipping, math,
+   code, tables, figures, spacing, heading breaks, cover, furniture and answer
+   separation. Preview DOCX with an available safe mechanism when supported;
+   otherwise explicitly report that its pagination was not visually inspected.
+4. Repair semantic/model or renderer defects and regenerate/reinspect affected
+   outputs. Preserve equivalence across formats. Runtime repairs affect the guide,
+   never the skill's instructions or developer graders.
+5. Return actual usable output paths/links and concise real scope/capability limits.
+
+The baseline supports common Latin/Greek technical content. It is not tagged PDF/UA
+and does not provide complex RTL shaping; unsupported glyphs/scripts fail clearly.
+Native alternatives must preserve the same teaching, visual, source-object and
+assessment semantics. Keep the audit separate from the student's guide unless useful.

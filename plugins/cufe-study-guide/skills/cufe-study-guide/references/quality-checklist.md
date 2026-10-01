@@ -50,6 +50,8 @@ assumptions. Pass it under [document-design.md](document-design.md) with any rea
 limitations. Normal repairs affect the current guide, never the skill instructions
 or developer graders.
 
-**Future export gate:** Phase 3 owns artifact/render inspection after generation
-and after output repairs. This content pass does not certify rendered DOCX/PDF
-quality; the semantic handoff retains that required later check.
+**Export gate:** after generation, follow [document-design.md](document-design.md)
+to inspect requested artifacts and rendered pages. Repair clipping, tables, code,
+equations, pagination, links, and answer separation; recheck changed outputs. The
+script's mechanical checks and this content pass do not certify visual quality.
+State any unavailable preview honestly rather than claiming it was inspected.

@@ -1,0 +1,447 @@
+{
+  "schema_version": "1.0",
+  "metadata": {
+    "course": "Renderer Development",
+    "lecture_number": 4,
+    "title": "Study Guide Rendering Mechanics",
+    "subtitle": "Compact layout smoke fixture",
+    "subject_category": "nlp",
+    "output_language": "en"
+  },
+  "source_context": {
+    "lectures": [
+      "Synthetic rendering fixture; not a course lecture"
+    ],
+    "previous": [
+      "Synthetic prior-context marker"
+    ]
+  },
+  "theme": {
+    "name": "academic",
+    "paper_size": "A4",
+    "toc": "never"
+  },
+  "sections": [
+    {
+      "id": "explanations",
+      "title": "Explanations and semantic callouts",
+      "blocks": [
+        {
+          "type": "callout",
+          "semantic": "core_explanation",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": "This fixture exercises document mechanics. Ordinary explanation remains unboxed and readable."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "text": "A useful guide uses "
+            },
+            {
+              "text": "selective emphasis",
+              "bold": true
+            },
+            {
+              "text": ", "
+            },
+            {
+              "text": "occasional italics",
+              "italic": true
+            },
+            {
+              "text": ", and inline code such as "
+            },
+            {
+              "text": ".fit()",
+              "code": true
+            },
+            {
+              "text": ". The model retains semantic meaning."
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "Preserve the same content in both formats.",
+            "Use labels as well as restrained color."
+          ]
+        },
+        {
+          "type": "callout",
+          "semantic": "important_note",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": "Important conditions remain visible without becoming an alarming warning."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "semantic": "common_confusion",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": "An example illustrates a model; it is not evidence of an exam question."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "semantic": "worked_example",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": "Start with a small input, show the decisive operation, and interpret its output."
+            }
+          ],
+          "title": "A compact worked case"
+        },
+        {
+          "type": "callout",
+          "semantic": "previous_lecture_connection",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": "The earlier model is reused here to interpret the new operation."
+            }
+          ],
+          "relationship": "reuse_application",
+          "previous_context": "Earlier fixture section: a shared representation."
+        },
+        {
+          "type": "callout",
+          "semantic": "under_the_hood",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": "Both output renderers consume the same ordered event plan, while only presentation differs."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "semantic": "optional_enrichment",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": "This optional note is beyond the synthetic course scope."
+            }
+          ],
+          "provenance": "optional_enrichment",
+          "show_provenance": true
+        },
+        {
+          "type": "quote",
+          "content": "A model should preserve meaning across presentations.",
+          "attribution": "Renderer fixture statement"
+        }
+      ],
+      "subsections": [
+        {
+          "id": "nested",
+          "title": "A second heading level",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": "Heading hierarchy supports navigation rather than simulated bold paragraphs."
+            }
+          ],
+          "subsections": [
+            {
+              "id": "details",
+              "title": "A third heading level",
+              "blocks": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "text": "Read the "
+                    },
+                    {
+                      "text": "OpenAI skill guidance",
+                      "href": "https://developers.openai.com/plugins/build/skills"
+                    },
+                    {
+                      "text": " or return to "
+                    },
+                    {
+                      "text": "the opening section",
+                      "href": "#explanations"
+                    },
+                    {
+                      "text": "."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "objects",
+      "title": "Equations code tables and diagrams",
+      "blocks": [
+        {
+          "type": "proof",
+          "classification": "lecture_proof",
+          "title": "Illustrative decay relationship",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": "Under the stated ideal assumptions, the relationship is obtained in explicit steps."
+            },
+            {
+              "type": "equation",
+              "lines": [
+                {
+                  "latex": "\\tau = RC",
+                  "explanation": "The time constant combines resistance and capacitance."
+                },
+                {
+                  "latex": "V(t) = V_0 e^{-t/\\tau}"
+                }
+              ],
+              "description": "Voltage decays exponentially with time; the exponent is dimensionless.",
+              "number": "1",
+              "symbols": [
+                {
+                  "symbol": "R",
+                  "meaning": "resistance in ohms"
+                },
+                {
+                  "symbol": "C",
+                  "meaning": "capacitance in farads"
+                },
+                {
+                  "symbol": "t",
+                  "meaning": "elapsed time in seconds"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "proof",
+          "classification": "optional_insight",
+          "title": "A short understanding aid",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": "At one time constant, substituting t = tau gives a factor of exp(-1). This is a small insight, not a new course requirement."
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "language": "Python",
+          "code": "values = [1, 2, 3]\nfor value in values:\n    print(value * 2)",
+          "caption": "Indentation and a light print-friendly code treatment."
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Type",
+            "Role",
+            "Condition"
+          ],
+          "rows": [
+            [
+              "Model",
+              "Shared meaning",
+              "Validated before rendering"
+            ],
+            [
+              "Renderer",
+              "Presentation",
+              "No independent teaching decisions"
+            ]
+          ],
+          "column_weights": [
+            1,
+            2,
+            2
+          ],
+          "caption": "A compact comparison table."
+        },
+        {
+          "type": "image",
+          "path": "diagram.png",
+          "alt": "Three rectangles joined by two rightward arrows.",
+          "caption": "Shared input flows through two consecutive stages.",
+          "explanation": "Notice the direction of both arrows. The three blocks are connected in order; no feedback loop is shown.",
+          "width_fraction": 0.9
+        },
+        {
+          "type": "exercise",
+          "id": "E1",
+          "title": "Predict the output",
+          "prompt": [
+            {
+              "type": "paragraph",
+              "content": "What three numbers does the Python example print?"
+            }
+          ],
+          "hint": [
+            {
+              "type": "paragraph",
+              "content": "Apply the multiplication separately to each item."
+            }
+          ],
+          "solution": [
+            {
+              "type": "paragraph",
+              "content": "It prints 2, 4, and 6, each on a separate line."
+            }
+          ],
+          "solution_placement": "inline"
+        },
+        {
+          "type": "exercise",
+          "id": "E2",
+          "prompt": [
+            {
+              "type": "paragraph",
+              "content": "Which layer decides whether a proof belongs in the guide?"
+            }
+          ],
+          "solution": [
+            {
+              "type": "paragraph",
+              "content": "The teaching layer decides; the renderer preserves its classification."
+            }
+          ],
+          "solution_placement": "answer_key"
+        },
+        {
+          "type": "callout",
+          "semantic": "checkpoint",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": "You should now be able to distinguish content decisions from layout decisions."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "semantic": "breakpoint",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": "The shared-content unit is complete. Revision material begins a separate unit."
+            }
+          ]
+        },
+        {
+          "type": "caption",
+          "content": "A standalone caption is supported when the teaching structure needs one."
+        }
+      ]
+    }
+  ],
+  "end_matter": [
+    {
+      "type": "callout",
+      "semantic": "cheatsheet",
+      "title": "Rapid reference",
+      "blocks": [
+        {
+          "type": "table",
+          "headers": [
+            "Item",
+            "Remember"
+          ],
+          "rows": [
+            [
+              "Schema",
+              "Validate version and relationships"
+            ],
+            [
+              "Answer Key",
+              "Separate from quiz questions"
+            ],
+            [
+              "Breakpoint",
+              "No automatic page break"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "type": "quiz",
+      "mode": "mixed",
+      "questions": [
+        {
+          "id": "Q1",
+          "question_type": "conceptual",
+          "prompt": [
+            {
+              "type": "paragraph",
+              "content": "Why should both formats share one semantic model?"
+            }
+          ]
+        },
+        {
+          "id": "Q2",
+          "question_type": "multiple_choice",
+          "prompt": [
+            {
+              "type": "paragraph",
+              "content": "Which signal remains useful in grayscale?"
+            }
+          ],
+          "options": [
+            "A clear textual label",
+            "Color alone",
+            "An unexplained background tint"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "answer_key",
+      "answers": [
+        {
+          "question_id": "Q1",
+          "answer": [
+            {
+              "type": "paragraph",
+              "content": "To preserve the same teaching content."
+            }
+          ],
+          "explanation": [
+            {
+              "type": "paragraph",
+              "content": "A shared model prevents independent output construction from omitting or changing concepts."
+            }
+          ]
+        },
+        {
+          "question_id": "Q2",
+          "answer": [
+            {
+              "type": "paragraph",
+              "content": "A clear textual label."
+            }
+          ],
+          "explanation": [
+            {
+              "type": "paragraph",
+              "content": "Labels preserve meaning when hue differences are unavailable. Color is a secondary signal."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

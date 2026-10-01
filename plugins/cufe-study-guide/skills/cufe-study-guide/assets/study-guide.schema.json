@@ -1,0 +1,1332 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "course": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lecture_number": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "integer",
+              "minimum": 0
+            }
+          ]
+        },
+        "subtitle": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subject_category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "output_language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title_override": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cover_fields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "label",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "additionalProperties": false
+    },
+    "source_context": {
+      "type": "object",
+      "properties": {
+        "lectures": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "previous": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "enum": [
+            "academic",
+            "grayscale"
+          ]
+        },
+        "paper_size": {
+          "enum": [
+            "A4",
+            "Letter"
+          ]
+        },
+        "toc": {
+          "enum": [
+            "auto",
+            "always",
+            "never"
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/section"
+      },
+      "minItems": 1
+    },
+    "end_matter": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/block"
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "metadata",
+    "sections"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ohamdy:cufe-study-guide:document:1.0",
+  "title": "CUFE semantic study guide 1.0",
+  "$defs": {
+    "run": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bold": {
+          "type": "boolean"
+        },
+        "italic": {
+          "type": "boolean"
+        },
+        "code": {
+          "type": "boolean"
+        },
+        "href": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "rich": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/run"
+          },
+          "minItems": 1
+        }
+      ]
+    },
+    "paragraph": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "paragraph"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "content": {
+          "$ref": "#/$defs/rich"
+        }
+      },
+      "required": [
+        "type",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    "heading": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "heading"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        }
+      },
+      "required": [
+        "type",
+        "text",
+        "level",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "list": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "list"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rich"
+          },
+          "minItems": 1
+        },
+        "ordered": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "items"
+      ],
+      "additionalProperties": false
+    },
+    "quote": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "quote"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "content": {
+          "$ref": "#/$defs/rich"
+        },
+        "attribution": {
+          "$ref": "#/$defs/rich"
+        }
+      },
+      "required": [
+        "type",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    "caption": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "caption"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "content": {
+          "$ref": "#/$defs/rich"
+        }
+      },
+      "required": [
+        "type",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    "code": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "code"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "caption": {
+          "$ref": "#/$defs/rich"
+        }
+      },
+      "required": [
+        "type",
+        "code"
+      ],
+      "additionalProperties": false
+    },
+    "table": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "table"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "headers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rich"
+          },
+          "minItems": 1
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/rich"
+            },
+            "minItems": 1
+          },
+          "minItems": 1
+        },
+        "column_weights": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "minItems": 1
+        },
+        "caption": {
+          "$ref": "#/$defs/rich"
+        }
+      },
+      "required": [
+        "type",
+        "headers",
+        "rows"
+      ],
+      "additionalProperties": false
+    },
+    "equation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "equation"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "latex": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "latex": {
+                "type": "string",
+                "minLength": 1
+              },
+              "explanation": {
+                "$ref": "#/$defs/rich"
+              }
+            },
+            "required": [
+              "latex"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "number": {
+          "type": "string",
+          "minLength": 1
+        },
+        "symbols": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "symbol": {
+                "type": "string",
+                "minLength": 1
+              },
+              "meaning": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "symbol",
+              "meaning"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "type",
+        "description"
+      ],
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "required": [
+            "latex"
+          ],
+          "not": {
+            "required": [
+              "lines"
+            ]
+          }
+        },
+        {
+          "required": [
+            "lines"
+          ],
+          "not": {
+            "required": [
+              "latex"
+            ]
+          }
+        }
+      ]
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "image"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "caption": {
+          "$ref": "#/$defs/rich"
+        },
+        "explanation": {
+          "$ref": "#/$defs/rich"
+        },
+        "source_reference": {
+          "$ref": "#/$defs/rich"
+        },
+        "width_fraction": {
+          "type": "number",
+          "minimum": 0.2,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "type",
+        "path",
+        "alt"
+      ],
+      "additionalProperties": false
+    },
+    "page_break": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "page_break"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "callout": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "callout"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "semantic": {
+          "enum": [
+            "core_explanation",
+            "important_note",
+            "common_confusion",
+            "worked_example",
+            "previous_lecture_connection",
+            "under_the_hood",
+            "optional_enrichment",
+            "checkpoint",
+            "breakpoint",
+            "cheatsheet"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 1
+        },
+        "relationship": {
+          "enum": [
+            "prerequisite",
+            "continuation",
+            "contrast",
+            "reuse_application"
+          ]
+        },
+        "previous_context": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "type",
+        "semantic",
+        "blocks"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "semantic": {
+                "const": "previous_lecture_connection"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "relationship",
+              "previous_context"
+            ]
+          },
+          "else": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "relationship"
+                  ]
+                },
+                {
+                  "required": [
+                    "previous_context"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "proof": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "proof"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "classification": {
+          "enum": [
+            "lecture_proof",
+            "optional_insight",
+            "extended_proof"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 1
+        },
+        "resource": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 1
+            },
+            "href": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "text",
+            "href"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "type",
+        "classification",
+        "blocks"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "classification": {
+                "const": "extended_proof"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "resource"
+            ]
+          }
+        }
+      ]
+    },
+    "exercise": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "exercise"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prompt": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 1
+        },
+        "hint": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 1
+        },
+        "solution": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 1
+        },
+        "solution_placement": {
+          "enum": [
+            "inline",
+            "answer_key",
+            "none"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "id",
+        "prompt",
+        "solution_placement"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "solution_placement": {
+                "enum": [
+                  "inline",
+                  "answer_key"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "solution"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "solution"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "question": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question_type": {
+          "enum": [
+            "conceptual",
+            "scenario",
+            "terminology",
+            "multiple_choice",
+            "code_tracing",
+            "calculation",
+            "short_answer"
+          ]
+        },
+        "prompt": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 1
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rich"
+          },
+          "minItems": 2
+        }
+      },
+      "required": [
+        "id",
+        "question_type",
+        "prompt"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "question_type": {
+                "const": "multiple_choice"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "options"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "options"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "quiz": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "quiz"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mode": {
+          "enum": [
+            "conceptual",
+            "scenario_heavy",
+            "terminology",
+            "exam_style",
+            "code_tracing",
+            "calculation_heavy",
+            "mixed"
+          ]
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/question"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "type",
+        "mode",
+        "questions"
+      ],
+      "additionalProperties": false
+    },
+    "answer": {
+      "type": "object",
+      "properties": {
+        "question_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 1
+        },
+        "explanation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "question_id",
+        "answer",
+        "explanation"
+      ],
+      "additionalProperties": false
+    },
+    "answer_key": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "answer_key"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provenance": {
+          "enum": [
+            "course_material",
+            "expanded_explanation",
+            "optional_enrichment"
+          ]
+        },
+        "show_provenance": {
+          "type": "boolean"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "keep_together": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/answer"
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "type",
+        "answers"
+      ],
+      "additionalProperties": false
+    },
+    "block": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/paragraph"
+        },
+        {
+          "$ref": "#/$defs/heading"
+        },
+        {
+          "$ref": "#/$defs/list"
+        },
+        {
+          "$ref": "#/$defs/quote"
+        },
+        {
+          "$ref": "#/$defs/caption"
+        },
+        {
+          "$ref": "#/$defs/code"
+        },
+        {
+          "$ref": "#/$defs/table"
+        },
+        {
+          "$ref": "#/$defs/equation"
+        },
+        {
+          "$ref": "#/$defs/image"
+        },
+        {
+          "$ref": "#/$defs/page_break"
+        },
+        {
+          "$ref": "#/$defs/callout"
+        },
+        {
+          "$ref": "#/$defs/proof"
+        },
+        {
+          "$ref": "#/$defs/exercise"
+        },
+        {
+          "$ref": "#/$defs/quiz"
+        },
+        {
+          "$ref": "#/$defs/answer_key"
+        }
+      ]
+    },
+    "section": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/block"
+          },
+          "minItems": 0
+        },
+        "subsections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/section"
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "blocks"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

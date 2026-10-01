@@ -6,9 +6,9 @@ description: "Create intuition-first study guides and comprehensive but intellig
 # CUFE Study Guide
 
 Author a guide the student can learn from, with course coverage, reusable mental
-models, and practical revision. Teaching instructions are operational; the packaged
-professional DOCX/PDF rendering system is planned for Phase 3. Use available output
-capabilities honestly. Detailed decisions live in the references below.
+models, and practical revision. Portable teaching instructions and a shared-model
+DOCX/direct-PDF renderer are implemented in development. Full real-lecture evals
+remain Phase 4. Use available capabilities honestly; detailed decisions live below.
 
 ## Task and evidence
 
@@ -42,9 +42,11 @@ planning that helps the learner. Do not begin by paraphrasing slides in order.
 5. **Support revision.** Finalize safe conceptual breakpoints; decide whether a
    cheatsheet earns its place. Add the end quiz and separate reasoned Answer Key
    unless waived. Use the dependency map and essential concepts to choose questions.
-6. **Audit and hand off.** Reconcile source coverage, verify explanations and answers,
-   repair content defects, and prepare semantic content for the available output
-   mechanism. Deliver supported outputs and disclose material gaps or capability limits.
+6. **Audit, render, and verify.** Reconcile coverage, explanations, and answers first.
+   Follow [document-design.md](references/document-design.md) to construct validated
+   semantic guide data and invoke the packaged renderer or a capable native mechanism.
+   Inspect generated artifacts/pages, repair output defects, and return actual file
+   paths/links. Disclose material evidence or verification/capability limits.
 
 ## Read references at the decision point
 
@@ -81,9 +83,11 @@ cheatsheets, enrichment, and prior connections require positive reasons.
   and never invent links. “No external material” excludes external enrichment and
   retrieval, not ordinary unpacking of the supplied course concepts.
 - Normally target both DOCX and PDF, or the requested subset. Select available
-  host-native tools/helpers; if a requested format is unsupported, deliver the best
-  supported content/output and name the limitation. Do not claim polished export
-  or successful rendering without doing it.
+  host-native tools or the package-relative `scripts/run_renderer.py` baseline.
+  The bootstrap uses an isolated cached runtime; do not install globally or write
+  generated files inside the installed plugin. If a requested format is unsupported,
+  deliver supported content/output and name the limitation. Do not claim successful
+  export or visual verification without doing it.
 
 The runtime package is self-contained: references hold teaching decisions, while
 scripts/assets are optional helpers. Repository specifications govern development,

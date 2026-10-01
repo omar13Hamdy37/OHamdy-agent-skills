@@ -4,6 +4,9 @@
 *.json text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
+*.py text eol=lf
+*.in text eol=lf
+*.lock text eol=lf
 .editorconfig text eol=lf
 .gitignore text eol=lf
 .gitattributes text eol=lf

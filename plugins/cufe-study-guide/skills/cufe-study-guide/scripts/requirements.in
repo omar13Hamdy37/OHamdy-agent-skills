@@ -1,0 +1,7 @@
+# Python 3.11+; refresh requirements.lock deliberately, then rerun rendering checks.
+python-docx>=1.2,<2
+reportlab>=4.4,<5
+matplotlib>=3.10,<4
+Pillow>=11,<13
+jsonschema>=4.25,<5
+pypdf>=6,<8

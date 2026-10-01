@@ -26,7 +26,7 @@ Output remains compatible with the Phase 3 design contract.
 **Completed:** the orchestrator and ten operational references implement these
 content decisions. See [Phase 2 validation and traceability](validation-phase2.md)
 for the requirement review and manual reasoning walkthroughs. Professional
-rendering and full real-lecture evals have not been implemented or validated.
+rendering was deferred to Phase 3; full real-lecture evals remain Phase 4.
 
 ## Phase 3 — Professional DOCX/PDF Generation & Visual System
 
@@ -43,6 +43,13 @@ Start from the skill's `references/document-design.md`: it defines semantic bloc
 types, equation/diagram/code/table information, intact groups, exercise feedback,
 and quiz/Answer Key associations. Choose output tooling and visual styles that
 preserve this contract; do not move the teaching intelligence into a single builder.
+
+**Implemented and smoke-tested:** versioned semantic model, shared-plan DOCX/direct
+PDF renderers, isolated dependencies, theme/artwork, navigation, object handling,
+and output checks. See [rendering](rendering.md) and
+[Phase 3 validation](validation-phase3.md). PDF pages were inspected; DOCX structure
+was verified, with unavailable local page preview recorded explicitly. Phase 4
+must test real lectures and reader/host behavior before claiming production readiness.
 
 ## Phase 4 — Evals, Real-Lecture Testing, Self-Repair & Release
 

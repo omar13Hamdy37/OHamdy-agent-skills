@@ -23,8 +23,9 @@ flowchart TD
     E -. assess behavior and output .-> D
 ```
 
-Phase 2 implements teaching and the semantic-content handoff. Professional
-document-generation helpers and rendered-artifact verification remain Phase 3.
+Phase 2 implements teaching; Phase 3 adds the versioned model, shared content plan,
+DOCX/direct-PDF helpers, and mechanical plus PDF visual inspection. Full behavioral
+and clean-host release validation remain Phase 4.
 
 | Layer | Location | Responsibility |
 | --- | --- | --- |
@@ -32,11 +33,11 @@ document-generation helpers and rendered-artifact verification remain Phase 3.
 | Plugin | `plugins/cufe-study-guide/plugin.json` | Stable identity, development version, publisher, and host presentation. |
 | Skill | `plugins/cufe-study-guide/skills/cufe-study-guide/SKILL.md` | Precise activation description, purpose, essential workflow, and reference routing. |
 | References | Skill `references/` | Operational portable teaching decisions, conditional features, and content QC. |
-| Helpers | Skill `scripts/` and `assets/` | Future generation helpers and output resources. Empty directories are retained with `.gitkeep`. |
+| Helpers | Skill `scripts/` and `assets/` | Baseline shared-model renderers, isolated bootstrap/lock, schema and semantic theme. |
 | Specifications | `docs/specs/` | Development requirements and acceptance criteria; excluded from runtime requirements. |
 | Evals | `evals/cufe-study-guide/` | Future developer cases, fixtures, graders, and repair loop; not runtime dependencies. |
 
-Distribute the plugin directory, including its references and future required
+Distribute the plugin directory, including its references and required
 helpers. Installation must not need files above that directory. Do not duplicate
 the skill under `.agents/skills/` merely to activate it during development.
 
@@ -132,3 +133,33 @@ separation, and intact conceptual groups.
 No new scripts, assets, dependencies, or eval implementations were introduced.
 `0.1.0` remains a development version, not a release. Phase 1's validation record
 is historical; the [Phase 2 record](validation-phase2.md) documents current checks.
+
+## Phase 3 rendering architecture
+
+Guidance rechecked across 2026-10-01/02: the
+[portable packaging guide](https://developers.openai.com/plugins/build/plugins)
+still uses the existing root manifest, and
+[skill resources](https://developers.openai.com/plugins/build/skills) remain
+package-contained scripts/assets/references. No packaging/discovery change or hook
+was required. The documented `agents/openai.yaml` dependencies concern tools;
+there is no documented automatic Python provisioning mechanism here. The renderer
+therefore includes an isolated cached bootstrap and hashed Python lock, without
+inventing manifest dependency fields or assuming a specific installation path.
+
+The teaching agent creates guide model 1.0. Schema and relationship checks precede
+one shared ordered content plan; both renderers consume it. Shared theme, equations,
+fonts, and cover primitives preserve presentation meaning across formats. Generation
+is deterministic and offline after dependencies are provisioned. Artifacts are
+checked and staged before publication, then their pages need visual inspection.
+
+`guide-model.md` describes authoring fields; `document-design.md` owns semantic
+styling and output workflow. `scripts/study_guide_renderer/` contains small modules;
+`assets/` contains schema/theme JSON. Nothing imports repository docs or developer
+fixtures. All resource paths derive from the installed module location. The optional
+native-host flow retains the same intelligence and semantics; availability still
+needs host validation. See [rendering](rendering.md) and
+[Phase 3 validation](validation-phase3.md) for implementation and actual limits.
+
+Rendering development material lives in `dev/rendering/`, including a tiny intentional
+source diagram. Generated artifacts/cache/PNG pages remain ignored under `output/`.
+This mechanical smoke check is separate from the unchanged Phase 4 eval scaffolding.

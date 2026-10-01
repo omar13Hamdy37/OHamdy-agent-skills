@@ -1,0 +1,29 @@
+{
+  "name": "academic",
+  "body_size": 11,
+  "leading": 16,
+  "code_size": 9,
+  "table_size": 9.5,
+  "margin_mm": 22,
+  "text": "#202B33",
+  "muted": "#52616B",
+  "link": "#235B78",
+  "border": "#D9D9D9",
+  "code_background": "#F3F5F6",
+  "semantics": {
+    "core_explanation": {"label": "Core explanation", "accent": "#202B33", "background": "#FFFFFF"},
+    "important_note": {"label": "Important", "accent": "#765719", "background": "#FAF6E9"},
+    "common_confusion": {"label": "Common Confusion", "accent": "#963F38", "background": "#FBF1EF"},
+    "worked_example": {"label": "Worked Example", "accent": "#235B78", "background": "#EFF5F8"},
+    "previous_lecture_connection": {"label": "Previous Lecture Connection", "accent": "#644E7A", "background": "#F5F1F8"},
+    "under_the_hood": {"label": "Under the Hood", "accent": "#356A67", "background": "#EFF6F5"},
+    "optional_enrichment": {"label": "Optional Enrichment", "accent": "#62626C", "background": "#F5F5F7"},
+    "proof": {"label": "Proof / Derivation", "accent": "#475B73", "background": "#F1F4F8"},
+    "exercise": {"label": "Exercise", "accent": "#3D6948", "background": "#F1F6F1"},
+    "checkpoint": {"label": "Checkpoint", "accent": "#3D6948", "background": "#F1F6F1"},
+    "breakpoint": {"label": "Good stopping point", "accent": "#52616B", "background": "#F7F8F8"},
+    "quiz": {"label": "Quiz", "accent": "#235B78", "background": "#FFFFFF"},
+    "answer_key": {"label": "Answer Key", "accent": "#202B33", "background": "#FFFFFF"},
+    "cheatsheet": {"label": "Cheatsheet", "accent": "#475B73", "background": "#FFFFFF"}
+  }
+}
