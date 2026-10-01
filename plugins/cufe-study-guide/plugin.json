@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "cufe-study-guide",
   "version": "0.1.0",
-  "description": "Transform university lecture material into complete, practical study guides. Initial development scaffold; teaching instructions and polished DOCX/PDF output are planned.",
+  "description": "Author intuition-first university lecture study guides with source coverage, practical learning, conceptual study breaks, and revision quizzes. Teaching instructions are operational; professional DOCX/PDF rendering is planned for Phase 3.",
   "author": {
     "name": "omar13Hamdy37",
     "url": "https://github.com/omar13Hamdy37"
@@ -12,8 +12,8 @@
     "com.openai": {
       "interface": {
         "displayName": "CUFE Study Guide",
-        "shortDescription": "University lecture study guides (development scaffold)",
-        "longDescription": "A study-guide author, tutor, and document designer for supplied university lectures. Phase 1 establishes the package and specification; the full learning system and document output are not implemented yet.",
+        "shortDescription": "Intuition-first lecture study guides and revision",
+        "longDescription": "Turn supplied university lectures into structured learning guides using concept dependency planning, important-material coverage, progressive examples, exercises, useful prior-lecture connections, study breaks, and quizzes with reasoned answers. Phase 2 teaching instructions are implemented. Professional document rendering and full regression validation remain planned; this development package is not publicly released.",
         "developerName": "omar13Hamdy37",
         "category": "Education"
       }

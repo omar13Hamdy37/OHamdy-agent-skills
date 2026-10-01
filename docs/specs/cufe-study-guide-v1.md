@@ -5,10 +5,10 @@
 **Initial package version:** `0.1.0` (development; not publicly released).
 
 This specification preserves the complete learning and document-output contract
-for implementation in Phases 2–4. Requirements below describe the mature skill;
-their presence in this document does not mean they are implemented in the scaffold.
-The Phase 1 references identify responsibilities and implementation work rather
-than reproduce this specification.
+for implementation in Phases 2–4. Requirements below describe the mature skill.
+Phase 2 implements operational teaching references and semantic output readiness;
+professional rendering remains Phase 3 and full regression validation remains
+Phase 4. This specification retains the complete intended behavior across phases.
 
 ## 1. Product purpose and priorities
 
@@ -363,7 +363,7 @@ Include proofs/derivations when useful, with clear classification:
 
 | Type | Rule |
 | --- | --- |
-| **Lecture Proof / Derivation** | Present in the supplied lecture; treat it as course material and preserve important reasoning, assumptions, and steps. |
+| **Lecture Proof / Derivation** | Present in or explicitly required by the supplied lecture; treat it as course material and preserve important reasoning, assumptions, and steps. |
 | **Optional Insight Proof** | Not explicitly required by the lecture, but short and useful for understanding instead of memorization. Label **Understanding aid — not required for memorization.** |
 | **Extended Proof** | Useful but too long for the guide; provide a clickable link to a clear, credible external explanation instead of importing excessive length. |
 
@@ -528,10 +528,10 @@ All references are under
 | `document-design.md` | Format contract, semantic design, accessibility, minimal cover, and render QA. | §4, §5 |
 | `quality-checklist.md` | Final learning, coverage, accuracy, and rendered-output gates. | D, T |
 
-Phase 1 files contain purpose, scope, relevant key requirements, and actionable
-Phase 2 TODO notes. Phase 2 replaces scaffolding with operational guidance, resolves
-overlap by linking the owning reference, and retains progressive disclosure.
-Keep `SKILL.md` as the concise entrypoint, not a copy of this master specification.
+Phase 1 recorded reference scope and implementation notes. Phase 2 replaces that
+scaffolding with operational decisions, resolves overlap by linking the owning
+reference, and retains progressive disclosure. Keep `SKILL.md` as the concise
+entrypoint, not a copy of this master specification.
 
 Document design has a Phase 2 semantic handoff and Phase 3 implementation. Scripts
 and assets remain empty until a concrete helper/template requirement is implemented.
@@ -600,3 +600,57 @@ capabilities as complete.
 
 The [development plan](../development.md) defines phase handoffs; the
 [eval foundation](../../evals/cufe-study-guide/README.md) records future test ownership.
+
+## 9. Phase 2 operational clarifications
+
+These clarify implementation while preserving A–T and the complete output contract.
+
+- **Intake:** interpret natural-language scope, assumed knowledge, depth, quiz mode/
+  size, cheatsheet opt-in/opt-out, external-material permission, and formats. Accept
+  mixed course notes, code, screenshots, and diagrams alongside lecture files.
+  User preferences override defaults; resolve genuine correctness/capability
+  conflicts explicitly. Do not silently ignore them or require rigid syntax.
+- **Planning before drafting:** inventory source items and build a compact internal
+  concept/dependency model, including missing bridges and intact proof/procedure
+  sequences. Use it for teaching order, compression, prior retrieval, checkpoints,
+  breakpoints, and quiz targets rather than paraphrasing slide by slide.
+- **Content categories:** ESSENTIAL, SUPPORTING, ENRICHMENT, REDUNDANT, and
+  ADMINISTRATIVE determine treatment. Provenance (course material, expanded
+  explanation, optional enrichment) is separate. Repeated emphasis may make a
+  concept important while its duplicate wording remains compressible.
+- **Coverage evidence:** a ledger records source locator, concept/category, guide
+  location, and covered/merged/intentionally condensed/intentionally omitted
+  disposition with reasons. Unresolved extraction gaps are separate and never
+  count as covered. Heading presence alone is fake completeness.
+- **Subject adaptation:** infer programming/software, ML/AI/NLP, logic/VHDL,
+  electronics, signals/systems, mathematics, algorithms/data structures, theory,
+  or hybrid teaching needs. Use one adaptable system, not duplicate subject skills.
+- **Content objects:** teach diagram directions/labels, equation symbols/units/
+  assumptions, decisive code lines/behavior, and meaningful table comparisons.
+  Retain their semantics for later preservation/recreation; avoid formula dumping
+  and unexplained “see diagram” references.
+- **Breakpoints:** use concept density, difficulty, activities, derivations, code/
+  math, and dependency depth as qualitative effort signals. A completed concept
+  can be reused after a break; an unfinished dependency chain cannot be interrupted.
+  Approximately 30 minutes is a planning aim, not a measured promise.
+- **Assessment:** quiz mode and size are independent preferences. Rough starting
+  ranges of 4–6 questions for simple lectures and 6–10 for normal lectures may
+  scale upward for density or downward for scope/preferences. They are not quotas.
+  Final answers remain separately grouped; small in-section activities instead
+  provide a real attempt opportunity followed by nearby labeled feedback.
+- **Proof scope:** a lecture-assigned proof counts as a course requirement even if
+  its steps are absent. Explain added completion accurately. Optional proof depth
+  requested by a learner does not change its lecture-scope classification.
+- **Capability fallbacks:** try alternate available reading methods for extraction
+  gaps. Never fabricate prior inspection, sources, URLs, or output artifacts. With
+  unavailable browsing, continue from supplied evidence; with prohibited external
+  material, omit external retrieval/enrichment. Deliver supported outputs with
+  actual scope/capability limits and ask only for critical missing information.
+- **Semantic handoff:** ordered labeled content preserves block types, object
+  meanings, course/enrichment distinctions where needed, intact reasoning groups,
+  and question/answer associations. No mandatory serialization, renderer, exact
+  palette, or host-specific tool dependency is introduced in Phase 2.
+- **QC boundary:** the operational checklist reviews content accuracy, coverage,
+  teaching, learning experience, connections, quiz, concision, and output readiness.
+  Actual artifact rendering and its post-export repair/verification remain Phase 3;
+  real-lecture regression grading and release validation remain Phase 4.

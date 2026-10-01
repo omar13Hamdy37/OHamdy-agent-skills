@@ -23,6 +23,11 @@ Exit gate: all requirements A–T have actionable, self-contained reference guid
 learning behavior can be reviewed without assuming a particular export script.
 Output remains compatible with the Phase 3 design contract.
 
+**Completed:** the orchestrator and ten operational references implement these
+content decisions. See [Phase 2 validation and traceability](validation-phase2.md)
+for the requirement review and manual reasoning walkthroughs. Professional
+rendering and full real-lecture evals have not been implemented or validated.
+
 ## Phase 3 — Professional DOCX/PDF Generation & Visual System
 
 Implement document helpers/assets as needed, semantic styles, minimal subject-aware
@@ -33,6 +38,11 @@ by the user.
 Exit gate: actual rendered documents are inspected and corrected; teaching content,
 equations, diagrams, code, quiz answers, links, and hierarchy survive both exports.
 Do not select dependencies until a concrete implementation need justifies them.
+
+Start from the skill's `references/document-design.md`: it defines semantic block
+types, equation/diagram/code/table information, intact groups, exercise feedback,
+and quiz/Answer Key associations. Choose output tooling and visual styles that
+preserve this contract; do not move the teaching intelligence into a single builder.
 
 ## Phase 4 — Evals, Real-Lecture Testing, Self-Repair & Release
 
@@ -57,7 +67,7 @@ Keep runtime changes under the plugin, development documentation under `docs/`,
 and regression materials under `evals/`. Update the specification when intended
 behavior changes; do not silently weaken a requirement to satisfy a grader.
 
-No package dependencies are required by Phase 1. Available local validation tools
+No package dependencies are required by Phases 1–2. Available local validation tools
 are developer conveniences, not plugin requirements. Current OpenAI CLI commands
 are documented in the [official command reference](https://learn.chatgpt.com/docs/developer-commands).
 Use `codex plugin list --marketplace ohamdy-agent-skills --available --json` as a
@@ -67,5 +77,6 @@ normal profile just to validate the scaffold.
 
 Before committing, parse JSON and skill YAML/front matter, verify source/reference
 paths and links, inspect placeholders, run appropriate checks, and review the
-complete staged diff. Phase 1 validation is structural; teaching and rendered-output
-evals belong to subsequent phases.
+complete staged diff. Phase 1 checks are structural; Phase 2 adds manual instruction
+and reasoning reviews. Full behavioral regression evals remain Phase 4, and actual
+rendered-output verification begins with Phase 3.

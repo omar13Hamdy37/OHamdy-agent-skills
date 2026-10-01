@@ -12,7 +12,9 @@ flowchart TD
     P --> S[Skill entrypoint]
     S --> R[Teaching references]
     S --> H[Optional scripts and assets]
-    R --> O[Host document capabilities]
+    S --> C[Reviewed semantic guide content]
+    R -. guide authoring .-> C
+    C --> O[Host document capabilities]
     H --> O
     O --> D[DOCX and PDF guides]
     SPEC[Development specification] -. governs authoring .-> S
@@ -21,15 +23,15 @@ flowchart TD
     E -. assess behavior and output .-> D
 ```
 
-The document-output arrows describe the mature system, not implemented Phase 1
-generators.
+Phase 2 implements teaching and the semantic-content handoff. Professional
+document-generation helpers and rendered-artifact verification remain Phase 3.
 
 | Layer | Location | Responsibility |
 | --- | --- | --- |
 | Marketplace | `.agents/plugins/marketplace.json` | Discovery, labels, sources, and installation/authentication policies. |
 | Plugin | `plugins/cufe-study-guide/plugin.json` | Stable identity, development version, publisher, and host presentation. |
 | Skill | `plugins/cufe-study-guide/skills/cufe-study-guide/SKILL.md` | Precise activation description, purpose, essential workflow, and reference routing. |
-| References | Skill `references/` | Portable teaching decisions; scaffolds now, operational instructions in Phase 2. |
+| References | Skill `references/` | Operational portable teaching decisions, conditional features, and content QC. |
 | Helpers | Skill `scripts/` and `assets/` | Future generation helpers and output resources. Empty directories are retained with `.gitkeep`. |
 | Specifications | `docs/specs/` | Development requirements and acceptance criteria; excluded from runtime requirements. |
 | Evals | `evals/cufe-study-guide/` | Future developer cases, fixtures, graders, and repair loop; not runtime dependencies. |
@@ -99,3 +101,34 @@ and expose unavailable output capabilities honestly.
 - Keep the v1 specification authoritative during development. Phase 2 must move
   complete operational behavior into references before release, so an installed
   package remains self-contained.
+
+## Phase 2 instruction architecture
+
+Current guidance was rechecked on 2026-10-01. The
+[OpenAI skills page](https://learn.chatgpt.com/docs/build-skills) confirms description-
+based selection and progressive disclosure. The
+[plugin skill authoring guide](https://developers.openai.com/plugins/build/skills)
+recommends concise entrypoints, explicit resource routing, and scripts only when
+they add reliable computation/file processing. No packaging change was required.
+
+`SKILL.md` orchestrates intake, evidence inspection, concept mapping, selection,
+teaching, revision features, QC, and output handoff. The four core references are
+consulted at their stages; conditional references are loaded only when their
+decision is relevant. All runtime links remain within the plugin.
+
+`content-selection.md` owns intake/preferences, the concept/dependency model,
+five content categories, provenance, and the coverage ledger. `teaching-style.md`
+owns discipline adaptation and content-level treatment of equations, diagrams,
+code, and tables. Conditional references own prior retrieval, breaks, proofs,
+quizzes, and cheatsheets. `quality-checklist.md` reviews content; `document-design.md`
+defines semantic types and associations to preserve during later export.
+
+The content contract accepts readable labeled content or an equivalent host-native
+structure; it is not a new manifest schema or mandatory serialization dependency.
+Course/enrichment provenance and semantic block type are separate. Rendering may
+change presentation, but must preserve explanations, object meaning, answer
+separation, and intact conceptual groups.
+
+No new scripts, assets, dependencies, or eval implementations were introduced.
+`0.1.0` remains a development version, not a release. Phase 1's validation record
+is historical; the [Phase 2 record](validation-phase2.md) documents current checks.

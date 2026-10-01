@@ -2,7 +2,8 @@
 
 These are developer/regression tests, not runtime dependencies. The distributable
 plugin must work without this directory. Phase 1 reserves directories and the
-testing plan; no fixtures, grader implementations, or eval runner exist yet.
+testing plan; Phase 2 adds operational instructions and manual reasoning reviews.
+No fixtures, grader implementations, or eval runner exist yet.
 
 ## Directory responsibilities
 
@@ -29,6 +30,20 @@ testing plan; no fixtures, grader implementations, or eval runner exist yet.
 | DOCX generation | Requested artifact exists and preserves content, structure, and semantic styles. |
 | PDF generation | Requested artifact exists and preserves readable content and working links. |
 | visual/render checks | Page layout, readable formulas/tables/code, callouts, hierarchy, and accessibility. |
+
+## Phase 2 targets for future cases
+
+Add future cases for natural-language preference overrides and source ranges;
+multi-file dependency planning; source gaps and honest partial coverage; relevance
+versus keyword-only prior matches; course/enrichment classification; assumed prior
+knowledge; subject adaptation; prohibited/unavailable external material; and
+single-format/unsupported-output fallbacks. Assess semantic preservation of
+equations, diagram relationships, code traces, intact groups, and quiz/answer
+associations when Phase 3 output is available.
+
+The [Phase 2 review](../../docs/validation-phase2.md) documents manual instruction
+walkthroughs. These are not an implemented regression suite or proof of real-lecture
+performance; keep `cases/`, `fixtures/`, and `graders/` as scaffolding until Phase 4.
 
 ## Complementary grading
 

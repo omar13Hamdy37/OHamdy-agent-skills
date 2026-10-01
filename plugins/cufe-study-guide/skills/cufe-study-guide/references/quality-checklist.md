@@ -1,29 +1,55 @@
-# Final quality control
+# Pre-output quality control
 
-**Status:** Phase 1 reference scaffold; operational instructions come in Phase 2.
+Use after drafting, before the output handoff. Review the actual explanations and
+evidence rather than counting headings. Keep this checklist internal unless the
+user requests an audit or needs to know a limitation.
 
-## Purpose and scope
+## Review in order of consequence
 
-Own final acceptance, coverage reconciliation, and repair decisions from D and T.
-The master specification contains the full checklist; this scaffold defines its
-operational grouping without claiming implemented checks.
+| Gate | Inspect | Repair if it fails |
+| --- | --- | --- |
+| **Source coverage** | Reconcile every meaningful scoped item with the ledger. Essential concepts, formula conditions, important diagrams, and course proof/method steps have real guide locations. Merges/condensations preserve their lesson; omissions have reasons. | Restore missing explanation/objects; correct unjustified dispositions. An unread source gap cannot be marked complete. |
+| **Teaching quality** | For each difficult concept, can the learner explain why it exists, use its mechanism, and connect it to what follows? Unfamiliar terms/symbols are explained at first use; examples/comparisons/bridges close actual gaps. | Add the missing model, step, or contrast; simplify jargon before adding more prose. Merely naming a concept is fake completeness. |
+| **Accuracy** | Recompute important example calculations/units, reason through or run code where supported, and inspect formulas, assumptions, proof steps/classification, and source interpretations. Claims distinguish conceptual models from implementation specifics. | Fix the source interpretation or example and every dependent explanation/answer. Disclose unresolved ambiguity rather than invent certainty or execution evidence. |
+| **Learning experience** | Practice is answerable and meaningful, checkpoints test understanding, and breakpoints follow completed units without interrupting proofs/derivations/examples/active dependencies. Enrichment has a learning benefit and an appropriate scope label. | Repair sequencing, feedback, or boundary placement; remove gratuitous enrichment and decorative checkpoints/breaks. |
+| **Cross-lecture quality** | Each connection has an inspected prior locator, a valid relationship type, and a specific current benefit. Notation/assumptions align; keyword matches alone are insufficient. | Verify or remove the connection. State an inaccessible prior path accurately without pretending inspection. |
+| **Quiz** | Important concepts/relationships/methods are reasonably sampled; mode/size preferences are honored; questions use taught material and plausible distractors. Independently solve them and compare with the separated, reasoned Answer Key. | Fix ambiguity, triviality, missing assumptions, or incorrect answers; check affected guide content as well. |
+| **Concision** | Repetition, unnecessary detail, excessive callouts, repeated prior recaps, optional-content creep, and oversized cheatsheets are removed. Compression has not reduced essential topics to labels. | Cut low-value support first; protect the explanation needed for standalone understanding within the user's scope/assumptions. |
+| **Output readiness** | Ordered sections and semantic types are consistent; equation symbols, diagram meanings, code/table structure, intact groups, links, quiz IDs/answer associations, and known metadata are ready for output. | Repair associations and missing context before passing content to the available output mechanism. |
 
-## Key requirements
+## Verify links and expectations
 
-- Reconcile important concepts, formulas, diagrams, and justified dispositions
-  against the source audit in [content-selection.md](content-selection.md).
-- Verify terminology, examples, explanations, conceptual relationships, and
-  standalone usefulness; remove unnecessary repetition.
-- Check enrichment labels, proof classifications, verified external links,
-  breakpoint continuity, and actual relevance of prior-lecture connections.
-- Check meaningful quiz coverage and correct, reasoned, separately placed answers.
-- Check consistent formatting and actual rendered DOCX/PDF output. Inspect final
-  exports after repairs; file existence alone does not establish output quality.
-- Disclose unresolved source/tool limitations instead of asserting a passed check.
+Inspect any external destination used for enrichment/proofs when browsing is
+allowed and available: check that it works and supports the stated purpose, not
+merely that its URL is syntactically valid. Do not fabricate sources or imply
+verification when access failed. Remove an unverified recommendation or state the
+narrow verification limit; preserve the required course explanation.
 
-## Phase 2 TODO
+Review optional proofs, advanced side notes, and outside techniques for clear
+course/enrichment distinction. Ordinary expanded explanation does not need a tag
+on every paragraph. Check explicit requested exclusions and source ranges, and
+avoid unsupported exam promises. Use the provenance policy in
+[content-selection.md](content-selection.md) when classification is unclear.
 
-Turn the complete specification checklist into an actionable pre-export review,
-coverage reconciliation, and repair procedure. Define the post-export handoff to
-[document-design.md](document-design.md) for Phase 3. Keep developer regression
-graders outside the plugin and never rewrite skill instructions during normal use.
+## Repair and decide whether the content is ready
+
+Resolve correctness/coverage defects first, then teaching issues, then concision
+and presentation semantics. Recheck the changed material and anything depending
+on it: a changed equation can affect a worked example, quiz answer, and cheatsheet.
+Reconcile the ledger again after cuts or reordered sections.
+
+If an essential evidence gap cannot be resolved with available reading tools,
+request the specific missing information when necessary. Continue independent
+units where useful. Any delivered partial guide must state its actual scope/gap;
+it cannot carry an unqualified completeness claim. Capability limitations do not
+justify inventing artifacts or prior/source evidence.
+
+Ready content covers scoped essentials, explains difficult ideas, supports practice
+and revision, has accurate answers, and can stand alone under the stated learner
+assumptions. Pass it under [document-design.md](document-design.md) with any real
+limitations. Normal repairs affect the current guide, never the skill instructions
+or developer graders.
+
+**Future export gate:** Phase 3 owns artifact/render inspection after generation
+and after output repairs. This content pass does not certify rendered DOCX/PDF
+quality; the semantic handoff retains that required later check.

@@ -1,61 +1,92 @@
 ---
 name: cufe-study-guide
-description: "Turn supplied university lecture slides, PDFs, or documents into structured study guides and comprehensive but intelligently condensed study notes, including DOCX/PDF guides from course material. Use for learning and revision from lectures; excludes unrelated summarization and ordinary document writing."
+description: "Create intuition-first study guides and comprehensive but intelligently condensed learning notes from supplied university lecture slides, PDFs, documents, or course material, including requests for DOCX/PDF guides. Use for lecture learning and exam revision; excludes unrelated summarization and ordinary document writing."
 ---
 
 # CUFE Study Guide
 
-Transform lecture material into a guide the student can learn from: preserve
-important course content, build understanding, and support practical revision.
+Author a guide the student can learn from, with course coverage, reusable mental
+models, and practical revision. Teaching instructions are operational; the packaged
+professional DOCX/PDF rendering system is planned for Phase 3. Use available output
+capabilities honestly. Detailed decisions live in the references below.
 
-## Development status
+## Task and evidence
 
-This is the Phase 1 skeleton. The references record intended requirements and
-Phase 2 work; the full teaching system and document generators are not implemented.
-Do not represent this scaffold as a finished, validated study-guide workflow.
-Detailed behavior belongs in the references rather than a growing entrypoint.
+Interpret natural-language scope, assumed knowledge, depth, quiz, cheatsheet,
+external-material, and output preferences. User instructions override defaults;
+resolve correctness/capability conflicts explicitly instead of silently ignoring them.
+Lectures define course scope, not necessarily optimal teaching order. Prior guides
+are secondary context. Never present an ambiguous source statement as certain, an
+optional addition as required, or a guessed exam prediction as course evidence.
+The [content-selection reference](references/content-selection.md) owns intake,
+classification, provenance, and coverage decisions.
 
-## High-level workflow
+## Workflow
 
-1. Inspect supplied lectures, relevant prior material, and the user's preferences.
-2. Identify meaningful concepts, formulas, diagrams, and dependencies; plan
-   coverage and purposeful condensation.
-3. Teach with intuition, explanations, progressive examples, and practice suited
-   to the subject. Add relevant prior-lecture connections and natural breakpoints.
-4. Add understanding checkpoints, a meaningful quiz with a separate Answer Key,
-   and a cheatsheet when useful or requested.
-5. Audit coverage and technical correctness. Create the requested document formats
-   with available host tooling and verify rendered outputs when implemented.
+Keep a compact internal inventory, dependency map, and coverage ledger; show only
+planning that helps the learner. Do not begin by paraphrasing slides in order.
 
-## Reference routing
+1. **Inspect and scope.** Read the request and current materials, infer course/subject
+   and learner assumptions, check requested ranges, and identify extraction gaps.
+2. **Map and select.** Inventory concepts, formulas, algorithms, methods, proofs,
+   examples, and visual evidence. Map prerequisites and missing explanatory bridges;
+   classify items and record planned dispositions. Inspect relevant supplied prior
+   material to resolve dependencies or helpful relationships.
+3. **Plan teaching units.** Order sections so prerequisites are established before
+   use. Preserve course notation and important material; merge repetitions. Choose
+   discipline-appropriate depth, examples, practice, and boundaries for longer guides.
+4. **Teach.** Build intuition and mechanisms before unnecessary jargon. Explain
+   symbols/diagrams/code, make useful comparisons, resolve misconceptions, and add
+   checkpoints. Decide proof depth and optional enrichment at the relevant concept,
+   respecting external-material preferences. Revisit the plan when new evidence appears.
+5. **Support revision.** Finalize safe conceptual breakpoints; decide whether a
+   cheatsheet earns its place. Add the end quiz and separate reasoned Answer Key
+   unless waived. Use the dependency map and essential concepts to choose questions.
+6. **Audit and hand off.** Reconcile source coverage, verify explanations and answers,
+   repair content defects, and prepare semantic content for the available output
+   mechanism. Deliver supported outputs and disclose material gaps or capability limits.
 
-Read references as their decisions become relevant; do not load every file by default.
+## Read references at the decision point
 
-| Decision | Reference |
+For every substantive guide, consult the four core references at their stages;
+do not preload conditional references or reread already-loaded guidance unnecessarily.
+
+| Stage or condition | Reference |
 | --- | --- |
-| Learning priorities and intuition-first organization | [learning-philosophy.md](references/learning-philosophy.md) |
-| Content selection and source coverage | [content-selection.md](references/content-selection.md) |
-| Terminology, examples, bridges, comparisons, and practice | [teaching-style.md](references/teaching-style.md) |
-| Relevant prior material and relationship types | [cross-lecture-connections.md](references/cross-lecture-connections.md) |
-| Conceptual stopping points around focused study sessions | [breakpoints.md](references/breakpoints.md) |
-| Quiz preferences and separated, reasoned answers | [quizzes.md](references/quizzes.md) |
-| Course proofs, optional insights, and extended proofs | [proofs-and-derivations.md](references/proofs-and-derivations.md) |
-| Whether and how to include a cheatsheet | [cheatsheets.md](references/cheatsheets.md) |
-| DOCX/PDF presentation and accessibility | [document-design.md](references/document-design.md) |
-| Final coverage, learning, and rendered-output checks | [quality-checklist.md](references/quality-checklist.md) |
+| Establish priorities and appropriate depth | [learning-philosophy.md](references/learning-philosophy.md) |
+| Inspect, map, classify, and audit sources | [content-selection.md](references/content-selection.md) |
+| Plan subject-sensitive explanations and activities | [teaching-style.md](references/teaching-style.md) |
+| Review final content and resolve defects | [quality-checklist.md](references/quality-checklist.md) |
+| Prior material supplied or a prior relationship needs checking | [cross-lecture-connections.md](references/cross-lecture-connections.md) |
+| Multiple substantial teaching units need study-session boundaries | [breakpoints.md](references/breakpoints.md) |
+| Required proof/derivation, requested depth, or a useful candidate insight | [proofs-and-derivations.md](references/proofs-and-derivations.md) |
+| Quiz requested or default quiz stage reached | [quizzes.md](references/quizzes.md) |
+| Cheatsheet requested or compact reference material appears useful | [cheatsheets.md](references/cheatsheets.md) |
+| Organize the final content for output/export | [document-design.md](references/document-design.md) |
 
-## Source-of-truth hierarchy
+If the user opts out of a conditional feature, skip its reference unless needed
+to resolve another decision. The quiz is normally included for substantial guides;
+cheatsheets, enrichment, and prior connections require positive reasons.
 
-- User instructions and preferences set the task and requested outputs.
-- Supplied lectures define course scope and required material. Prior material
-  supplies context; external sources may clarify or enrich, not silently replace
-  the syllabus. Flag source ambiguity or technical errors rather than inventing facts.
-- This entrypoint and packaged references define the runtime workflow. Keep
-  course content, added explanation, and optional enrichment distinguishable where
-  exam expectations depend on the distinction.
-- During development, the repository v1 specification is authoritative until
-  translated into operational references. It is not an installed runtime dependency.
+## Capabilities and limits
 
-Keep teaching decisions portable. Scripts and assets are optional helpers; select
-available Codex or ChatGPT Work document capabilities without requiring one host.
-Normal execution must not rewrite this skill or depend on developer eval files.
+- Use available file readers, visual inspection, OCR, or alternate extraction for
+  missing source content. Follow supplied paths within the authorized task. If a
+  critical gap remains, ask a targeted question; continue independent sections and
+  make any delivered partial scope explicit. Never mark unread material covered.
+- Search relevant prior files when accessible. An unavailable path cannot support
+  a claimed prior-lecture connection; explain the limitation and use current evidence.
+- Browse to verify external facts/resources only when allowed and useful. Without
+  access, use supplied evidence and established explanations, label uncertainty,
+  and never invent links. “No external material” excludes external enrichment and
+  retrieval, not ordinary unpacking of the supplied course concepts.
+- Normally target both DOCX and PDF, or the requested subset. Select available
+  host-native tools/helpers; if a requested format is unsupported, deliver the best
+  supported content/output and name the limitation. Do not claim polished export
+  or successful rendering without doing it.
+
+The runtime package is self-contained: references hold teaching decisions, while
+scripts/assets are optional helpers. Repository specifications govern development,
+not runtime loading. Normal execution must not rewrite skill files or depend on
+developer evals. Personalize through the teaching choices, not repeated references
+to the student's identity.
