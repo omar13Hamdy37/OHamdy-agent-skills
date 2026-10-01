@@ -100,8 +100,9 @@ were verified as relevant official resources and exist in both output formats.
 - Two grader errors were corrected: explicit one-based check indices, and accepting
   a valid conceptual assumptions quiz instead of imposing an unrequested scenario
   quota. Targeted regrading reused unchanged generation; no skill distortion.
-- The public CI workflow targets Linux and Windows and runs no model/private tests.
-  Its remote execution status is recorded after the release-candidate push below.
+- The public CI workflow runs no model/private tests. Both Linux and Windows jobs
+  passed on release-candidate commit `25d7e15c7d69aa377cec6af0b2372ee51d2227d1`:
+  [public CI run](https://github.com/omar13Hamdy37/OHamdy-agent-skills/actions/runs/36938544560).
 
 ## Real artifacts and visual inspection
 
@@ -154,10 +155,28 @@ own remote checkout fixture rendered both formats (six PDF pages), independently
 of the development runtime paths. Relocation and cached offline rendering also pass.
 Normal global Codex configuration was left unchanged.
 
-The local v1 acceptance gates pass. Package metadata is promoted to **1.0.0**.
-Final pushed-state marketplace/version verification and public CI results are
-recorded after the release-candidate push, before tagging. No license was chosen
-and there is no universal-directory submission.
+The pushed release candidate `25d7e15c7d69aa377cec6af0b2372ee51d2227d1` was then
+tested in a **new isolated profile** against GitHub `main`:
+
+- Marketplace registered; plugin installed/discovered as **1.0.0**, enabled,
+  `AVAILABLE`, `ON_USE`. The official manifest schema passes.
+- All 29 runtime files byte-match the reviewed package, including scripts,
+  references, schema and theme assets. No original checkout path is required.
+- Full trigger suite repeated against this installed version: **16/16 passed**.
+- Fresh isolated dependency bootstrap completed. An initially stalled setup was
+  retried with standard noninteractive pip/timeouts and succeeded; provisioning
+  time depends on package-index connectivity. No global environment was changed.
+- The installed package rendered its remotely fetched public fixture from an
+  unrelated output working directory: valid DOCX and six-page PDF, all mechanical
+  content/link/resource checks passed. Its new runtime dependency check passed.
+- Cached offline rendering from the installed v1 package passed as well. Temporary
+  authentication-cache copies were removed after model-assisted tests.
+
+All local, real-source, artifact, visual, public CI and GitHub-package gates pass.
+**Release decision: accept v1.0.0**, with the limitations below. Annotated tagging
+and a repeat GitHub-backed discovery check against the pushed tag complete the
+release procedure. No license was chosen and no universal-directory submission
+was made.
 
 ## Privacy, limitations and future scope
 
