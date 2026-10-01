@@ -943,6 +943,25 @@
               "resource"
             ]
           }
+        },
+        {
+          "if": {
+            "properties": {
+              "classification": {
+                "enum": [
+                  "optional_insight",
+                  "extended_proof"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "provenance": {
+                "const": "optional_enrichment"
+              }
+            }
+          }
         }
       ]
     },

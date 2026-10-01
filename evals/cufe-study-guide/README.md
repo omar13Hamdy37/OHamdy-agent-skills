@@ -1,71 +1,91 @@
-# CUFE Study Guide eval foundation
+# CUFE Study Guide evals
 
-These are developer/regression tests, not runtime dependencies. The distributable
-plugin must work without this directory. Phase 1 reserves directories and the
-testing plan; Phase 2 adds operational instructions and manual reasoning reviews.
-No fixtures, grader implementations, or eval runner exist yet.
+These are developer/regression tests, **never runtime dependencies**. The runner
+follows the official [skill-eval workflow](https://developers.openai.com/blog/eval-skills):
+prompt → `codex exec --json` trace → artifacts → deterministic checks → independent
+structured grading → reviewed diagnosis/repair → rerun. Normal execution never
+rewrites the skill or graders.
 
-## Directory responsibilities
+## Commands
 
-- `cases/`: future prompts, expected outcomes, preferences, and requirement IDs.
-- `fixtures/`: future real lecture inputs, previous lectures/guides, and small
-  inspectable output references with provenance and appropriate reuse permission.
-- `graders/`: future deterministic checks and learning/design grading rubrics.
-- Generated run artifacts belong in ignored `runs/` or `results/` directories.
+From the repository, use a Python environment with the hashed runtime lock plus
+[developer lock](requirements.lock). See [setup and evaluation](../../docs/evaluation.md).
 
-## Planned categories
+```text
+python evals/cufe-study-guide/run_evals.py --deterministic
+python evals/cufe-study-guide/run_evals.py --triggers
+python evals/cufe-study-guide/run_evals.py --synthetic
+python evals/cufe-study-guide/run_evals.py --real prnn-intro
+python evals/cufe-study-guide/run_evals.py --real prnn-intro --existing output/phase4/real/prnn-intro
+python evals/cufe-study-guide/run_evals.py --all
+```
 
-| Category | What future checks assess |
-| --- | --- |
-| should-trigger | Supplied lecture slides/PDFs/documents requested as study guides, learning notes, or DOCX/PDF revision material. |
-| should-not-trigger | Unrelated summarization, ordinary document writing, and requests without the lecture-learning use case. |
-| lecture coverage | Important concepts, formulas, diagrams, and justified condensation/omission in the coverage audit. |
-| terminology quality | Unfamiliar terms explained at first meaningful use; ordinary words not overdefined. |
-| conceptual clarity | Intuition, mechanisms, bridges, comparisons, and appropriate technical depth. |
-| breakpoint quality | Useful approximate 30-minute sessions without broken dependency chains. |
-| cross-lecture relationships | Relevant, grounded prerequisites, continuations, contrasts, and applications. |
-| quiz quality | Meaningful understanding tests, preference adaptation, separated Answer Key, and correct reasoning. |
-| proof classification | Lecture proof versus optional understanding aid versus linked extended proof. |
-| cheatsheet decisions | Included when requested or useful; omitted when it adds little value. |
-| DOCX generation | Requested artifact exists and preserves content, structure, and semantic styles. |
-| PDF generation | Requested artifact exists and preserves readable content and working links. |
-| visual/render checks | Page layout, readable formulas/tables/code, callouts, hierarchy, and accessibility. |
+| Suite | Model calls | Private lecture | Purpose |
+| --- | --- | --- | --- |
+| deterministic | None | None | Public package/model/grader gates and renderer mechanics; CI safe. |
+| triggers | 16 | None | Eight positive/eight negative selection requests; actual instruction-read evidence. |
+| synthetic | 8 | None | Four original teaching cases, each generated then independently graded. |
+| real | 2 normally | Required | Actual installed skill generation, coverage/rubric grading, artifacts and PNGs. |
+| real + existing | 1 | Required | Regrade a retained actual run; never substitute manually authored content. |
+| all | All above | Every configured case | Deliberate full pass; potentially substantial model usage. |
 
-## Phase 2 targets for future cases
+`--codex-home` selects an isolated authenticated profile with the plugin installed.
+`--jobs 2` allows two independent trigger calls; default is sequential. `--case`
+selects trigger or synthetic IDs; repeat it for targeted reruns. Synthetic
+`--reuse-generation` regrades unchanged source/request content after a grader fix;
+it rejects a changed generation prompt. `--output` stays under ignored
+`output/`; `--timeout` bounds each model call. No model or effort override is added:
+the developer's configured Codex defaults apply. Incomplete calls fail clearly.
 
-Add future cases for natural-language preference overrides and source ranges;
-multi-file dependency planning; source gaps and honest partial coverage; relevance
-versus keyword-only prior matches; course/enrichment classification; assumed prior
-knowledge; subject adaptation; prohibited/unavailable external material; and
-single-format/unsupported-output fallbacks. Assess semantic preservation of
-equations, diagram relationships, code traces, intact groups, and quiz/answer
-associations when Phase 3 output is available.
+## Private fixtures
 
-The [Phase 2 review](../../docs/validation-phase2.md) documents manual instruction
-walkthroughs. These are not an implemented regression suite or proof of real-lecture
-performance; keep `cases/`, `fixtures/`, and `graders/` as scaffolding until Phase 4.
+Copy [local-fixtures.example.json](local-fixtures.example.json) to ignored
+`local-fixtures.json`, then supply your local source path. Never copy university
+PDFs into the repository. Profiles contain a reviewed SHA-256, high-level
+non-verbatim concept inventory, source locators and decision checks. Add a new
+profile/config entry for each future lecture. A changed hash requires reinspection,
+not automatic acceptance of stale coverage targets. Prior sources are optional.
 
-## Complementary grading
+All prompts/traces, guide JSON, extracted material, diagrams, DOCX/PDF files,
+page images and detailed grades remain under ignored `output/phase4/`. Public
+reports contain only safe summaries. PRNN Lecture 01 is one real case, not proof
+of universal teaching quality.
 
-**Deterministic checks** will verify artifact existence, requested formats,
-expected sections, a separate Answer Key for substantial guides unless waived,
-syntactically valid links, required metadata when known/requested, and structural
-invariants. Do not require invented course metadata or report-style cover fields.
-Link syntax does not prove that a destination works; check external reachability
-separately when network access permits it.
+## Grading and release gates
 
-**Rubric/model grading** will assess explanation quality, beginner-friendliness,
-conceptual completeness, useful progressive examples, accurate relationships,
-quiz reasoning, and whether breakpoints preserve learning continuity. Render
-inspection will assess the actual exported pages. Existence checks alone cannot
-establish good pedagogy or polished output.
+The [rubric](graders/rubric.md) grades 15 dimensions on 1–5, with justified N/A.
+Coverage must account for every inventory item; a name alone is not teaching.
+Essential omissions, serious fidelity defects, critical dimensions below 4, an
+applicable average below 4.2, or a failed learning decision block acceptance.
+Absence of optional proofs, breakpoints or cheatsheets is judged, not penalized
+automatically. Review model rationale against source and guide before repairs.
 
-Map future cases to the [v1 specification](../../docs/specs/cufe-study-guide-v1.md)
-and its acceptance criteria. Define evidence-based pass conditions and diagnose
-failures instead of grading exact wording or copying implementation instructions.
+Artifact checks reconcile every expected content event in both formats, verify
+schema/relationships, links, A4 geometry, fonts, navigation, quiz/key separation,
+and PDF glyph bounds. Every PDF page is rendered. **PNG generation is not visual
+review**: inspect the images and record that separately.
+For a retained real run, `--review-file <receipt.json>` validates an explicit
+per-page receipt against the PDF hash. The receipt must record every page,
+crop/axis integrity, contents/quiz overflow, answer separation, bounds, typography,
+page furniture and meaning without color. A regenerated PDF needs a new review.
 
-## Phase 4 loop
+No documented dedicated skill-selected event exists in the tested CLI. The
+conservative proxy counts a successful `command_execution` read of the installed
+`SKILL.md` with matching front matter in output; naming the skill or listing files
+does not count. CLI/tool changes may require auditing this proxy. Initial native
+Windows read-only calls rejected PowerShell reads; the harness uses
+`--approve-for-me` in isolated run directories on Windows, with graders instructed
+not to edit content and real inputs hashed before/after. It never disables
+sandboxing or automatic review. Other hosts use read-only grading.
 
-**build → eval → diagnose → repair → rerun** is the developer workflow. Preserve
-failed-run evidence and review changes to the skill, helpers, and graders. Normal
-student execution must never rewrite the skill to improve its own evaluation score.
+## Repair loop
+
+Classify a failure as selection/instructions/reference/model/schema/renderer/grader/
+package. Verify against actual evidence, repair that reusable layer, add a
+regression, regenerate with the skill when behavior changed, and rerun the failed
+case plus relevant suites. Do not hand-patch a real guide to meet a metric.
+Preserve failing evidence locally. Grader errors get grader repairs.
+
+Release also requires source/fidelity review, visual inspection, a clean
+GitHub-backed marketplace install/bootstrap, a staged private-data scan, and final
+remote-version discovery. These gates are outside the automated score alone.

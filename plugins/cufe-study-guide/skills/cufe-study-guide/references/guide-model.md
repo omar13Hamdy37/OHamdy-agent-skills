@@ -82,7 +82,9 @@ wrap every paragraph in a callout.
 - A proof uses `type: "proof"`, `classification` (`lecture_proof`, `optional_insight`,
   `extended_proof`), and `blocks`. An extended proof also requires `resource:
   {"text": "descriptive title", "href": "verified URL"}`. Optional classifications
-  receive the understanding-aid label automatically.
+  receive the understanding-aid label automatically. If supplied, their
+  `provenance` must be `optional_enrichment`, never course material or expanded
+  required explanation. This consistency is validated before either export.
 - An exercise uses `type: "exercise"`, `id`, `prompt` blocks, optional `hint` blocks,
   and `solution_placement` (`inline`, `answer_key`, `none`). The first two require
   `solution` blocks; `none` excludes them. A separate solution requires an Answer

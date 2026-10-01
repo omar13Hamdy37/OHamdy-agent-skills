@@ -274,7 +274,8 @@ class PDFRenderer:
             heading = self.paragraph("Contents", fontName="SGBold", fontSize=21, leading=26, spaceAfter=14)
             story.append(heading)
             for item in toc:
-                story.append(self.paragraph([{"text": item["text"], "href": "#" + item["id"]}], leftIndent=(item["level"] - 1) * 12))
+                story.append(self.paragraph([{"text": item["text"], "href": "#" + item["id"]}],
+                                            leftIndent=(item["level"] - 1) * 12, fontSize=10.5, leading=14.5, spaceAfter=3))
             story.append(PageBreak())
         stack = []
         for event in events:

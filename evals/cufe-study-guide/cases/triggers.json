@@ -1,0 +1,18 @@
+[
+  {"id":"explicit","expected":true,"prompt":"Use $cufe-study-guide to turn my university lecture PDF into a complete study guide. I will provide the file next."},
+  {"id":"slides","expected":true,"prompt":"Turn these university lecture slides into a study guide I can learn from. I will attach them next."},
+  {"id":"learning-notes","expected":true,"prompt":"Create comprehensive study notes from my university lecture: explain difficult terminology, add examples, and quiz me at the end. The lecture file will follow."},
+  {"id":"nn-documents","expected":true,"prompt":"I have a neural networks lecture. Teach it to me and make a PDF and Word study guide. I will supply the lecture next."},
+  {"id":"derivations","expected":true,"prompt":"Make a study guide from my signals lecture. Focus on derivations and make the quiz scenario-heavy. I will provide the source next."},
+  {"id":"exam","expected":true,"prompt":"I have an exam tomorrow. Turn my course lecture notes into condensed but complete learning material with worked examples and a small quiz. I will provide the notes next."},
+  {"id":"prior-folder","expected":true,"prompt":"Create a study guide from Lecture 4 and use my previous lecture folder to connect related concepts. I will supply both paths next."},
+  {"id":"no-cheat","expected":true,"prompt":"Create a university lecture study guide with intuition before terminology, a mixed quiz, and no cheatsheet. I will attach the PDF next."},
+  {"id":"business","expected":false,"prompt":"Summarize this business report. I will attach it next."},
+  {"id":"conversion","expected":false,"prompt":"Convert my DOCX to PDF, preserving layout. I will provide the file next."},
+  {"id":"essay","expected":false,"prompt":"Proofread my essay. I will paste it next."},
+  {"id":"two-sentences","expected":false,"prompt":"Explain what a neural network is in two sentences."},
+  {"id":"extract-images","expected":false,"prompt":"Extract all images from this PDF. I will provide it next."},
+  {"id":"meeting","expected":false,"prompt":"Turn my meeting transcript into action items. I will paste it next."},
+  {"id":"generic-report","expected":false,"prompt":"Write a professional Word report about our sales performance. I will supply the data next."},
+  {"id":"general-tutor","expected":false,"prompt":"What is the difference between classification and regression? Give a brief answer."}
+]

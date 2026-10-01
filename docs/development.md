@@ -68,6 +68,15 @@ must test real lectures and reader/host behavior before claiming production read
 Self-repair is a reviewed developer activity. The mature skill must not modify its
 own instructions or graders during normal student use.
 
+**Implemented and validated:** public deterministic checks, 16 selection prompts,
+four original behavior cases, and one private real-lecture generation with
+independent structured grading and complete PDF page inspection. Reusable
+renderer/reference repairs have regression coverage. GitHub-backed installation
+and isolated bootstrap are tested without changing the normal agent profile.
+See [Phase 4 validation](validation-phase4.md) and [evaluation commands](evaluation.md).
+One lecture does not establish quality for every discipline; add further private
+lectures through the existing profile/config mechanism.
+
 ## Working conventions
 
 Keep runtime changes under the plugin, development documentation under `docs/`,
@@ -85,5 +94,6 @@ normal profile just to validate the scaffold.
 Before committing, parse JSON and skill YAML/front matter, verify source/reference
 paths and links, inspect placeholders, run appropriate checks, and review the
 complete staged diff. Phase 1 checks are structural; Phase 2 adds manual instruction
-and reasoning reviews. Full behavioral regression evals remain Phase 4, and actual
-rendered-output verification begins with Phase 3.
+and reasoning reviews. Phase 3 introduced actual rendered-output verification;
+Phase 4 adds the implemented behavioral suites, reviewed repair loop and release
+validation. Previous phase validation records preserve their original scope.

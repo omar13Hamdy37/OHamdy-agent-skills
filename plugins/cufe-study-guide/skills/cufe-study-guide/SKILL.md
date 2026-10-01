@@ -7,8 +7,8 @@ description: "Create intuition-first study guides and comprehensive but intellig
 
 Author a guide the student can learn from, with course coverage, reusable mental
 models, and practical revision. Portable teaching instructions and a shared-model
-DOCX/direct-PDF renderer are implemented in development. Full real-lecture evals
-remain Phase 4. Use available capabilities honestly; detailed decisions live below.
+DOCX/direct-PDF renderer provide the baseline. Use available capabilities honestly;
+detailed decisions live below.
 
 ## Task and evidence
 

@@ -21,6 +21,10 @@ node_modules/
 /outputs/
 /evals/**/runs/
 /evals/**/results/
+/evals/**/local-fixtures.json
+
+# Private university fixtures and derivatives must never enter source control.
+# Keep source files outside the repository; local configs and runs stay ignored.
 
 # Editor and operating-system files
 .vscode/

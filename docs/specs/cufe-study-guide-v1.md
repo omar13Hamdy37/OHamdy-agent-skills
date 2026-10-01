@@ -3,12 +3,14 @@
 **Status:** authoritative intended-behavior specification, authored in Phase 1.
 **Plugin and skill identifier:** `cufe-study-guide`.
 **Initial package version:** `0.1.0` (development; not publicly released).
+**Validated v1 package:** `1.0.0`; see [Phase 4 evidence](../validation-phase4.md).
 
 This specification preserves the complete learning and document-output contract
 for implementation in Phases 2–4. Requirements below describe the mature skill.
 Phase 2 implements operational teaching references. Phase 3 implements shared-model
-document rendering and mechanical/PDF visual checks; full regression and clean-host
-release validation remain Phase 4. The complete intended behavior is retained.
+document rendering and mechanical/PDF visual checks. Phase 4 adds implemented
+regression suites and real-lecture/release validation. The complete intended
+behavior below is retained; earlier phase notes describe their historical boundaries.
 
 ## 1. Product purpose and priorities
 
@@ -537,7 +539,7 @@ Document design has a Phase 2 semantic handoff and Phase 3 implementation. Scrip
 and assets now contain the baseline renderers, schema/theme and isolated dependency
 bootstrap. Teaching behavior remains in references rather than rendering code.
 
-## 7. Evaluation architecture (foundation now; implementation in Phase 4)
+## 7. Evaluation architecture (foundation in Phase 1; implemented in Phase 4)
 
 Developer/regression evals live in `evals/cufe-study-guide/`, outside distributable
 runtime plugin content. Reserve `cases/`, `fixtures/`, and `graders/`. Do not create
@@ -600,7 +602,7 @@ download/install instructions**. No phase may claim another phase's unimplemente
 capabilities as complete.
 
 The [development plan](../development.md) defines phase handoffs; the
-[eval foundation](../../evals/cufe-study-guide/README.md) records future test ownership.
+[eval guide](../../evals/cufe-study-guide/README.md) records test ownership and commands.
 
 ## 9. Phase 2 operational clarifications
 
@@ -676,3 +678,27 @@ while retaining semantic description, symbol definitions, and stepwise reasoning
 Mechanical checks do not replace rendered-page inspection. See
 [rendering](../rendering.md) and [validation](../validation-phase3.md) for actual
 supported capabilities, preview limits, and Phase 4 host/real-lecture work.
+
+## 11. Phase 4 validation clarifications
+
+These preserve A–T rather than specialize the teaching system to one course.
+
+- Private university inputs remain outside Git. Source paths, extracted material,
+  execution traces and generated derivatives stay in ignored local configuration
+  and output. Public evidence may contain fingerprints and non-verbatim inventories.
+- Actual installed-skill execution is separate from independent grading. JSONL
+  traces provide conservative instruction-read evidence; structured rubric results
+  require complete concept accounting, strong critical dimensions and no fidelity
+  defect. A grader's rationale is reviewed against actual evidence before repair.
+- Repairs target reusable instructions/schema/rendering/grading, never a manually
+  patched real guide. Runtime guide/crop repair remains normal output QA and must
+  not rewrite installed instructions.
+- Source crops preserve complete axes, legends and labels. Contents/quiz spillover
+  is checked without deleting instructional content to satisfy page-count targets.
+  DOCX validation includes compatibility namespace declarations, not just ZIP/XML.
+- Every delivered PDF page needs actual inspection. A hash-bound per-page receipt
+  distinguishes inspected pages from automatically generated PNGs. Reader-level
+  DOCX preview is attempted when available; unsupported preview is disclosed.
+- v1 evidence is one real lecture plus original behavior/renderer regressions.
+  Dense derivations, RTL, complex code and other real courses need future cases;
+  passing one lecture must not be described as universal pedagogical validation.

@@ -116,6 +116,20 @@ def main():
     inspect_pdf(folder / "minimal.pdf", images=True)
     summary["minimal"] = "missing optional metadata, unknown subject, grayscale, Letter passed"
 
+    # Real-guide failure generalized: a moderate linked contents list must not
+    # strand its last entry on an otherwise empty page. No university content.
+    navigation_model = copy.deepcopy(minimal)
+    navigation_model["theme"] = {"name":"academic", "paper_size":"A4", "toc":"always"}
+    navigation_model["sections"] = [{"id":f"topic-{i}", "title":f"Topic {i:02}: A clear conceptual unit with useful explanatory context",
+                                     "blocks":[{"type":"paragraph","content":f"Original mechanical explanation for unit {i}."}]}
+                                    for i in range(1, 31)]
+    navigation_path = write_model(folder, "navigation", navigation_model)
+    command(script, navigation_path, folder, "navigation")
+    navigation_pages = inspect_pdf(folder / "navigation.pdf", images=True)
+    assert "Contents" in navigation_pages[1] and "Topic 30:" in navigation_pages[1]
+    assert "Original mechanical explanation" in navigation_pages[2]
+    summary["contents_density"] = "30 linked entries fit a readable contents page; body starts next page"
+
     # A tall image checks aspect preservation independently of the wide smoke diagram.
     tall_path = folder / "tall.png"
     image = Image.new("RGB", (120, 600), "white")

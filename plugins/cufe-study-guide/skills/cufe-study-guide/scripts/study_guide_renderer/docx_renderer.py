@@ -208,6 +208,11 @@ class WordRenderer:
             for heading in toc:
                 p = self.paragraph([{"text": heading["text"], "href": "#" + heading["id"]}])
                 p.paragraph_format.left_indent = Pt((heading["level"] - 1) * 12)
+                p.paragraph_format.line_spacing = 1.25
+                p.paragraph_format.space_after = Pt(3)
+                for run in p._p.xpath(".//w:r"):
+                    from docx.text.run import Run
+                    Run(run, p).font.size = Pt(10.5)
             self.document.add_page_break()
         groups = []
         for event in events:

@@ -1,0 +1,3 @@
+# Developer inspection/grading only; never installed by the runtime skill.
+pypdfium2==5.13.0
+PyYAML==6.0.2

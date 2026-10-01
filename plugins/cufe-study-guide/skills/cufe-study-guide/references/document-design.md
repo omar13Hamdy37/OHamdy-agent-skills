@@ -55,6 +55,9 @@ proof must still expose scope. Do not tag every explanatory paragraph.
 - Images/diagrams: local accessible path, meaningful alt text, caption, source reference,
   width preference and explanatory text. Aspect ratio is preserved. PNG/JPEG is the
   baseline reliable input. Do not use unreadably small screenshots as fake coverage.
+  When cropping a source figure, inspect the crop itself: retain complete axes,
+  legends, arrowheads and concept labels, and remove cut-off neighboring slide
+  text. A successful image embed does not verify the crop's instructional meaning.
 - Links: descriptive text and verified supplied URL or existing `#id`; both formats
   preserve links. The renderer does not browse or invent references.
 
@@ -110,6 +113,9 @@ all requested formats before publishing them and diagnoses real failures non-zer
    code, tables, figures, spacing, heading breaks, cover, furniture and answer
    separation. Preview DOCX with an available safe mechanism when supported;
    otherwise explicitly report that its pagination was not visually inspected.
+   Check contents-page overflow and quiz spillover as well as body pages. Tighten
+   repetitive navigation wording or nonessential question wording while preserving
+   meaning; do not remove course content to achieve an arbitrary page count.
 4. Repair semantic/model or renderer defects and regenerate/reinspect affected
    outputs. Preserve equivalence across formats. Runtime repairs affect the guide,
    never the skill's instructions or developer graders.

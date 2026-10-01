@@ -1,0 +1,133 @@
+{
+  "type": "object",
+  "properties": {
+    "dimensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "completeness",
+              "clarity",
+              "motivation",
+              "terminology",
+              "bridges",
+              "mental_models",
+              "examples",
+              "practice",
+              "filtering",
+              "confusions",
+              "quiz",
+              "answers",
+              "standalone",
+              "concision",
+              "fidelity"
+            ]
+          },
+          "score": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 5
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "score",
+          "evidence",
+          "rationale"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "concept_id": {
+            "type": "string"
+          },
+          "guide_location": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "covered",
+              "merged",
+              "condensed",
+              "intentionally omitted",
+              "missing"
+            ]
+          },
+          "treatment": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "concept_id",
+          "guide_location",
+          "status",
+          "treatment"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "filtering",
+              "no_prior_fabrication",
+              "breakpoints",
+              "cheatsheet",
+              "proofs",
+              "quiz_correctness",
+              "source_fidelity"
+            ]
+          },
+          "acceptable": {
+            "type": "boolean"
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "acceptable",
+          "rationale"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "critical_issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "dimensions",
+    "coverage",
+    "decisions",
+    "critical_issues"
+  ],
+  "additionalProperties": false
+}

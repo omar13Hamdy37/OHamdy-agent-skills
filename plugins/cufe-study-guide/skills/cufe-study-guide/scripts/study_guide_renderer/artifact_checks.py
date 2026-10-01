@@ -3,7 +3,7 @@
 import posixpath
 import re
 import zipfile
-from xml.etree import ElementTree as ET
+from lxml import etree as ET
 
 from pypdf import PdfReader
 
@@ -11,6 +11,27 @@ from .model import GuideError, plain
 
 W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 R = "http://schemas.openxmlformats.org/package/2006/relationships"
+MC = "http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+
+def check_markup_namespaces(root, part):
+    """XML parsing alone misses prefix-valued OOXML compatibility attributes.
+
+    Preserve declarations when editing XML: mc:Ignorable='w14' is invalid if
+    serialization renamed/dropped xmlns:w14, even though the XML still parses.
+    Word rejects such packages. This check does not require an Office installation.
+    """
+    for node in root.iter():
+        for attribute in ("Ignorable", "MustUnderstand", "PreserveElements", "PreserveAttributes", "ProcessContent"):
+            value = node.get("{" + MC + "}" + attribute, "")
+            for token in value.split():
+                prefix = token.split(":", 1)[0]
+                if prefix not in node.nsmap:
+                    raise GuideError(f"DOCX undeclared markup-compatibility prefix {prefix!r} in {part}")
+        if node.tag == "{" + MC + "}Choice":
+            for prefix in node.get("Requires", "").split():
+                if prefix not in node.nsmap:
+                    raise GuideError(f"DOCX undeclared compatibility Choice prefix {prefix!r} in {part}")
 
 
 def normalized(text):
@@ -65,6 +86,7 @@ def check_docx(path, events, theme):
         for name in names:
             if name.endswith((".xml", ".rels")) or name == "[Content_Types].xml":
                 root = ET.fromstring(package.read(name))
+                check_markup_namespaces(root, name)
                 if name.endswith(".rels"):
                     base = posixpath.dirname(posixpath.dirname(name))
                     for relationship in root:

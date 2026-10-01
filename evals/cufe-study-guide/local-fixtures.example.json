@@ -1,0 +1,12 @@
+{
+  "cases": {
+    "prnn-intro": {
+      "source": "<absolute-path-to-private-lecture.pdf>",
+      "profile": "cases/prnn-intro.profile.json",
+      "course": "Pattern Recognition and Neural Networks",
+      "lecture_number": "01",
+      "title": "Introduction",
+      "previous_sources": []
+    }
+  }
+}

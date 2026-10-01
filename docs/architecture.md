@@ -163,3 +163,36 @@ needs host validation. See [rendering](rendering.md) and
 Rendering development material lives in `dev/rendering/`, including a tiny intentional
 source diagram. Generated artifacts/cache/PNG pages remain ignored under `output/`.
 This mechanical smoke check is separate from the unchanged Phase 4 eval scaffolding.
+
+## Phase 4 eval and marketplace conventions
+
+Official guidance verified **2026-10-02**:
+[systematic skill evals](https://developers.openai.com/blog/eval-skills),
+[noninteractive execution](https://learn.chatgpt.com/docs/non-interactive-mode),
+[developer commands](https://learn.chatgpt.com/docs/developer-commands), and the
+existing [portable plugin guide](https://developers.openai.com/plugins/build/plugins).
+The package/discovery layout remains current; no obsolete manifest compatibility
+layer was added. The current CLI supports `codex plugin add name@marketplace`,
+so installation can use two terminal commands followed by a new session.
+The Plugins Directory remains an alternative where supported. The installed
+CLI 0.159.3 uses `--approve-for-me`; older eval examples using `--full-auto`
+must not be copied without checking current help.
+
+The eval runner lives outside the runtime plugin. Public deterministic checks,
+trigger controls, original behavior fixtures, and private real-source grading
+have separate commands. Structured graders use `--output-schema`; traces use
+documented JSONL events. A successful installed instruction read is the conservative
+selection proxy, not an assumed internal selection string. See
+[evaluation](evaluation.md) for the native Windows read-access adjustment.
+
+Private source paths live only in ignored configuration; university PDFs remain
+outside Git. Traces, extracts and generated derivatives stay under ignored output.
+Public profiles contain fingerprints and non-verbatim concept inventories.
+Rendering and grading never consume private development profiles at runtime.
+
+Isolated `CODEX_HOME` testing follows official
+[environment configuration](https://learn.chatgpt.com/docs/config-file/environment-variables)
+and [authentication guidance](https://learn.chatgpt.com/docs/auth). Marketplace
+registration, package installation and a fresh isolated renderer bootstrap were
+tested from GitHub rather than only the checkout. Final remote-version discovery
+is a separate release gate recorded in [Phase 4 validation](validation-phase4.md).

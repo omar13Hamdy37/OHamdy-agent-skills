@@ -3,7 +3,7 @@
 import hashlib
 import uuid
 import zipfile
-from xml.etree import ElementTree as ET
+from lxml import etree as ET
 
 from matplotlib.ft2font import FT2Font
 

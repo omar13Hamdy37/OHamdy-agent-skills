@@ -114,6 +114,9 @@ def validate(model, base):
     for block in all_blocks:
         if "id" in block:
             register(block["id"])
+        if block["type"] == "proof" and block["classification"] != "lecture_proof":
+            if block.get("provenance", "optional_enrichment") != "optional_enrichment":
+                raise GuideError("Optional/extended proofs cannot claim course-material provenance")
         if block["type"] == "table":
             n = len(block["headers"])
             if any(len(row) != n for row in block["rows"]):

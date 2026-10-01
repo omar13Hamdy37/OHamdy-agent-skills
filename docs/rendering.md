@@ -146,7 +146,8 @@ This is not the Phase 4 pedagogical eval suite.
 The renderer checks OOXML ZIP/XML/relationships, heading styles, paper size,
 embedded assets, PDF parsing/pages/text/fonts/outlines, supplied external-link
 targets, and every expected content item across requested formats. These checks
-do not detect all visual defects. Inspect pages and repair output defects before
+also verify prefix-valued OOXML compatibility attributes: XML parsing alone cannot
+detect a lost `mc:Ignorable` namespace declaration. Inspect pages and repair defects before
 delivery. See [Phase 3 validation](validation-phase3.md) for actual inspection and
 edge-case evidence, rather than treating mechanical success as a visual certificate.
 
@@ -169,6 +170,7 @@ edge-case evidence, rather than treating mechanical success as a visual certific
 - DOCX pagination can vary between readers; embedded fonts do not guarantee identical
   Word/PDF page counts. No Microsoft Word, Adobe Acrobat, or LibreOffice is required
   for baseline generation. Optional DOCX previews need an available safe previewer.
-- Windows Python 3.13 was exercised here. Clean Linux/macOS and native Work outputs
-  still need Phase 4 host testing. Native generation remains allowed when it preserves
+- Windows Python 3.13 was exercised locally; the public CI matrix additionally
+  targets Linux. See [Phase 4 validation](validation-phase4.md) for actual CI results.
+  macOS and native Work outputs remain untested. Native generation is allowed when it preserves
   the same semantic content, visual signals, and output verification obligations.

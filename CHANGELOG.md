@@ -2,39 +2,33 @@
 
 ## Unreleased
 
+## 1.0.0 — 2026-10-02
+
 ### Added
 
-- Repository marketplace and portable, skills-only `cufe-study-guide` plugin.
-- Phase 1 skill entrypoint and ten reference scaffolds.
-- Authoritative v1 study-guide specification, architecture, and development plan.
-- Evaluation directory foundation and planned regression categories.
-- Repository editing conventions and initial structural validation record.
+- GitHub-backed repository marketplace and portable, skills-only CUFE Study Guide.
+- Intuition-first teaching with concept/dependency planning, intelligent content
+  classification, source coverage, terminology, examples, comparisons and practice.
+- Grounded cross-lecture relationships, conceptual study breakpoints, classified
+  proofs, adaptive quizzes with separate reasoned answers, and useful cheatsheets.
+- Versioned semantic model driving professional DOCX and direct PDF: restrained
+  A4 design, subject-aware covers, embedded fonts, headings/navigation, callouts,
+  equations, code, tables, diagrams and links.
+- Hashed runtime dependencies and isolated cached bootstrap with offline reuse
+  and resources resolved from the installed package.
+- Public deterministic CI, 16 trigger controls, four original behavior cases,
+  private-fixture configuration, independent structured grading and reviewed
+  build/eval/diagnose/repair/rerun workflow.
+- One real CUFE lecture validation with full PDF page inspection, safe public
+  findings, preserved local artifacts and beginner-friendly marketplace installation.
 
-### Changed
+### Fixed
 
-- Implemented Phase 3 rendering: a versioned semantic JSON Schema and shared
-  content plan feeding DOCX and direct PDF with mechanical artifact checks.
-- Added a restrained, labeled A4 visual system, local subject-aware cover art,
-  embedded fonts, structural navigation, semantic callouts, equations, code,
-  tables, diagrams, quizzes/Answer Key, and cheatsheets.
-- Added a hashed dependency lock and isolated cached Python bootstrap with offline
-  reuse; resources resolve from the installed package and outputs stay outside it.
-- Added compact rendering-development fixtures, mechanical edge checks, actual
-  PDF page inspection, and Phase 3 validation/handoff documentation. Full teaching
-  evals, real lecture testing, and release remain deferred.
+- Font embedding now preserves OOXML compatibility namespaces; validation catches
+  packages that parse as XML but would be rejected by Word.
+- Denser readable linked contents avoids a stranded final navigation entry.
+- Source-crop and quiz-page QA explicitly guard complete labels and answer separation.
+- Optional proof provenance cannot contradict its beyond-course classification.
 
-- Completed Phase 2 teaching intelligence: concept/dependency planning, content
-  classification and coverage ledger, intuitive subject-sensitive explanations,
-  practice, misconceptions, and checkpoints.
-- Replaced all ten reference scaffolds with operational guidance, including
-  grounded prior-lecture retrieval, conceptual breakpoints, proof selection,
-  adaptive quizzes/Answer Key, and conditional cheatsheets.
-- Strengthened the concise skill orchestrator, natural-language preference
-  handling, progressive reference loading, capability fallbacks, and pre-output QC.
-- Defined the semantic content handoff for Phase 3 without adding rendering code
-  or templates; updated package descriptions and development status accordingly.
-- Recorded Phase 2 requirement traceability, manual reasoning walkthroughs, and
-  lightweight validation. Full evals and release work remain Phase 4.
-
-The manifest version `0.1.0` identifies an initial development package; it is not
-a public release.
+Validation scope and remaining reader/accessibility/host limitations are recorded
+in `docs/validation-phase4.md`. No software license has been selected.

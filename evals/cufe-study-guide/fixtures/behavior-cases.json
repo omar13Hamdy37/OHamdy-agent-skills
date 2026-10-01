@@ -1,0 +1,43 @@
+[
+  {
+    "id": "prior-relations",
+    "lecture": "Lecture B: A moving-average filter averages the last three samples. Contrast an isolated impulse with a constant sequence. Filtering reuses weighted sums. Extend the earlier mean to a sliding window.",
+    "prior": "Lecture A: The arithmetic mean is a sum divided by the number of observations. An impulse has one nonzero sample; a constant sequence has the same value at every index. Administrative note: room changed.",
+    "request": "Teach Lecture B using the supplied Lecture A context. Include only useful prior connections. Do not create documents; return a structured content plan.",
+    "checks": [
+      "Evidence-backed prerequisite/continuation/contrast/reuse relationships where helpful, not a quota of four callouts.",
+      "No connection to room changes.",
+      "Explain the actual mechanism, not just mention the mean."
+    ]
+  },
+  {
+    "id": "proof-scope",
+    "lecture": "For real numbers a and b, expand (a+b)^2 by distributivity: (a+b)(a+b)=a^2+ab+ba+b^2=a^2+2ab+b^2. This derivation is required. The inequality a^2+b^2 >= 2ab follows from (a-b)^2 >= 0 but is extra intuition, not required. A full real-analysis development is outside this lecture.",
+    "request": "Teach this short mathematical lecture. Preserve the required derivation; include a short optional insight if useful. Do not add unverified links. Do not create documents; return a structured content plan.",
+    "checks": [
+      "Required derivation retained with steps.",
+      "Optional insight clearly not required for memorization.",
+      "No fabricated extended-proof URL."
+    ]
+  },
+  {
+    "id": "syntax-cheatsheet",
+    "lecture": "Python sequences: xs[0] selects the first item; xs[-1] selects the last; xs[a:b] excludes b; xs[::2] takes alternate items; len(xs) counts items; xs.append(v) mutates a list and returns None. Empty xs[0] raises IndexError. A slice beyond the end truncates safely.",
+    "request": "Use $cufe-study-guide for these original programming lecture notes. Explain behavior with tiny examples and decide whether a cheatsheet helps. Do not create documents; return a structured content plan.",
+    "checks": [
+      "Syntax-heavy reference material supports concise cheatsheet.",
+      "Mutation versus return value confusion resolved.",
+      "Empty indexing versus slicing edge case preserved."
+    ]
+  },
+  {
+    "id": "conceptual-no-prior",
+    "lecture": "A measurement is a recorded observation; a model is a simplified explanation used to predict another observation. A useful model has assumptions. Changing those assumptions can change whether a prediction is trustworthy. There is no previous lecture and no formulas or syntax.",
+    "request": "Use $cufe-study-guide for these short original lecture notes. No cheatsheet, no external material, keep the quiz small. Do not create documents; return a structured content plan.",
+    "checks": [
+      "No previous-lecture connections invented.",
+      "No cheatsheet, no unrequested proof, no artificial timed breakpoint.",
+      "Plain-language explanation, a small understanding quiz that reasons about assumptions (conceptual or concrete application), and a separate reasoned Answer Key."
+    ]
+  }
+]
